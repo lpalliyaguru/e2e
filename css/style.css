@@ -609,27 +609,3 @@ fieldset[disabled] .btn-submit.active {
 /* end carousel - testimonial */
 /*custom styles*/
 
-.no-link a,.no-link a:hover{text-decoration: none; color:#fff!important;}
-.survey-header{background-color: #65216C; position: fixed; border-bottom: 1px solid #915198; padding: 10px 0}
-.survey-container{padding-top:130px }
-#survey-form {margin-top:40px}
-.main-header{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-repeat;background-size: cover;}
-#survey-form button[type=submit] {padding: 12px 40px}
-#survery-header { background-color : rgba(159, 7, 174, 0.84)!important; padding-bottom: 50px;}
-#survey-form label.question-lable {font-weight: normal; font-size: 18px}
-#survey-form .form-group {margin-bottom: 30px}
-#header{background-color: rgba(159, 7, 174, 0.84)!important;}
-.select-2{width: 100%}
-#alert-box{display: none}
-.lead {font-size: 18px;!important;
-    text-align: justify;!important;}
-.link-white{ color: #fff!important;}
-.link-orange { color: #d58512}
-.link-orange:hover { color: #A2660F}
-.link-blue { color: #d58512}
-.link-blue:hover { color: #d58512}
-.link-green { color: #15D815}
-.link-green:hover { color: #15D815}
-.link-purple { color: #A80ABB}
-.link-purple:hover { color: #82358b}
-.link-bold-500{font-weight: 500;}

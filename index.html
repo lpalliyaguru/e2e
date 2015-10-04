@@ -25,7 +25,7 @@
 
         <!-- COLOR STYLE CSS -->
         <link rel="stylesheet" href="/css/purple.css">
-
+        <link rel="stylesheet" href="/css/app.css">
         <!-- FLEXSLIDER -->
         <link href="/third-party/flexslider/flexslider.css" rel="stylesheet" />
 
@@ -33,8 +33,8 @@
         <link rel="stylesheet" href="/third-party/owl-carousel/owl.carousel.css">
 
         <!-- Default Theme -->
-        <link rel="stylesheet" href="/third-party//owl-carousel/owl.theme.css">
-
+        <link rel="stylesheet" href="/third-party/owl-carousel/owl.theme.css">
+        <link rel="stylesheet" href="https://select2.github.io/dist/css/select2.min.css">
         <!-- Magnific Popup core CSS file -->
         <link rel="stylesheet" href="/third-party/magnific-popup/magnific-popup.css">
 
@@ -46,53 +46,39 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-<!-- Side Menu -->
-<!--<a id="menu-toggle" href="#menu" class="btn btn-links btn-lg toggle"><i class="fa fa-bars fa-lg"></i></a>
-<div id="sidebar-wrapper">
-  <div>
-    <a id="menu-close" href="#menu" class="btn btn-links btn-lg toggle"><i class="fa fa-times fa-lg"></i></a>
-  </div>
-  <ul class="sidebar-nav">
-    <li class="spacer-25px"></li>
-    <li><a href="#header"><i class="fa fa-home fa-lg"></i> Home</a></li>
-  </ul>
-</div>-->
-<!-- End side menu -->
-
-
 <!-- Header -->
 <section id="header" class="container-fluid text-white main-header">
-    <div class="container">
+    <div class="container home-header-bar">
       <div class="row clearfix">
         <div class="col-md-12 column ">
           <h1 class="text-center">
             <img src="/images/logos/final-logo.png" width="200" />
           </h1>
-		  <!--<h1 class="main_title"><b>End2End Property</b> is the hasslefree way to find your dream property.</h1>
-          <p class="text-left lead">
-            We at end to end property aim to simplify the process of finding a new home, to cut down costs when signing agreements, and to help you find a place you can call home. We are a group of expats based in Singapore, having a collective experience of over 25 years in building software products to solve real world problems. Over the past 5 years, we have gone through many times the costly and sometimes daunting process of finding a new home.  We are working to change this.
-          </p>
-          <p class="lead">For those who feel the pinch when paying more than the rent in the form of commission, would you want to CHANGE it the next time you look out for a place?
-            If yes, we invite you to <a href="/share.html" target="_blank" class="link-green">share</a> your views with us <a href="/share.html" target="_blank" class="link-green"><i class="fa fa-paper-plane-o"></i></a> </p>-->
-          <!--<a href="#" class="btn btn-lg btn-link"><span class="glyphicon glyphicon-circle-arrow-right"></span> Learn More</a>-->
         </div>
-        <!--<div class="col-md-6 column">
-          <div id="main-slider" class="flexslider">
-            <ul class="slides">
-              <li>
-                <img class="img-responsive" src="images/mockup-iphone6.png" alt="Slide One">
-              </li>
-              <li>
-                <img class="img-responsive" src="images/mockup-iphone6_2.png" alt="Slide Two">
-              </li>
-              <li>
-                <img class="img-responsive" src="images/mockup-ipad-air.png" alt="Slide Three">
-              </li>
-            </ul>
-          </div>
-        </div>-->
       </div>
     </div><!-- /container  -->
+
+    <div class="container" id="home-search">
+        <div class="row">
+
+            <div class="col-md-2">
+                <div class="btn-group pull-right" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default input-lg-50">Rent</button>
+                    <button type="button" class="btn btn-default input-lg-50">Sale</button>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group ">
+                    <div class="input-group">
+                        <!--<input type="text" class="form-control input-lg" id="home-search-box">-->
+                        <select id="home-search-box" class="form-control input-lg"><option></option></select>
+                        <span class="input-group-addon"><a href="#home-search"><i class="fa fa-search fa-2x"></i></a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </section>
 <!-- end header -->
 
@@ -110,34 +96,10 @@
             </div>
         </div>
     </div> <!-- /container -->
+
+
 </section>
 <!-- end feature -->
-
-<!-- Image -->
-<!--<section id="image" class="container-fluid text-blue">
-  <div class="container">
-    <div class="row clearfix">
-      <div class="col-sm-12 col-md-6 column">
-        <img alt="iPhone-5c" class="img-responsive" src="images/iPhone-5c.png" />
-      </div>
-      <div class="col-sm-12 col-md-6">
-        <div class="row">
-          <div class="col-sm-12 col-md-12 p_title">
-            <h2>Responsive design for all devices</h2>
-            <p class="lead text-left">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi odio, gravida at turpis.
-            </p>
-          </div>
-          <div class="col-sm-12 col-sm-12 col-md-8">
-            <a href="#" class="btn btn-lg btn-lead-b btn-block"><span class="glyphicon glyphicon-cloud-download"></span>   Download Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> &lt;!&ndash; /container &ndash;&gt;
-</section>-->
-<!-- end image -->
-
 <!-- About -->
 <div id="about" class="container text-blue">
   <div class="row clearfix">
@@ -169,70 +131,7 @@
         </div>
 
   </div>
-</div> <!-- container -->
-<!-- end about -->
-
-<!-- Video
-<section id="video" class="container-fluid text-blue">
-  <div class="container">
-    <div class="row clearfix">
-      <div class="col-md-12 column p_title">
-        <h2 class="text-center">Take a video tour</h2>
-        <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="col-md-offset-2 col-md-8 ipad">
-        <a class="popup-vimeo" href="http://player.vimeo.com/video/78554894?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff">
-          <i class="fa fa-play-circle-o fa-3x"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end vodeo -->
-
-<!-- Testimonial -->
-
-<!-- end testimonial -->
-
-<!-- Download
-<section id="download" class="text-white">
-  <div class="container">
-    <div class="row clearfix">
-      <div class="col-md-12 column text-center">
-        <h2 class="text-center">Are you ready?</h2>
-        <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-      <div class="col-md-12 text-center">
-        <a href="#" class="btn btn-lg btn-lead"><span class="glyphicon glyphicon-cloud-download"></span> Download Now</a>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end download -->
-
-<!-- Screenshot
-<div class="container text-blue" id="screenshots">
-  <div class="row">
-    <div class="col-md-12 p_title">
-      <h2 class="text-center">Screenshots</h2>
-      <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-  </div>
-  <div class="row ">
-    <ul id="owl-screenshot" class="owl-carousel text-center">
-      <li><img class="" src="images/portfolio/01.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/02.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/03.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/04.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/05.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/06.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/07.jpg" alt="Image" width="240px"></li>
-      <li><img class="" src="images/portfolio/08.jpg" alt="Image" width="240px"></li>
-    </ul>
-  </div>
-</div><!--.container-->
-<!-- end screenshot -->
-
+</div>
 <!-- Social -->
 <section id="social" class="container-fluid text-white">
   <div class="container">
@@ -328,7 +227,7 @@
 
         <!-- Magnific Popup core JS file -->
         <script src="/third-party/magnific-popup/jquery.magnific-popup.js"></script>
-
+        <script src="/third-party/select2/js/select2.min.js"></script>
         <!-- Isotope JS file -->
         <script src="/third-party/isotope/jquery.isotope.min.js"></script>
 		<script src="/js/script.js"></script>

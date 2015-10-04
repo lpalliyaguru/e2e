@@ -4,8 +4,6 @@ $(function(){
             tags: true
         });
     }
-
-
     $('#subscribe').click(function(e){
         e.preventDefault();
         var form_status = $('<div class="form_status"></div>');
@@ -40,4 +38,55 @@ $(function(){
         });
     }
 
+    $("#home-search-box").select2({
+        ajax: {
+            url: "http://api.e2e.local/api/tags/all.json",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                    page: params.page
+                };
+            },
+            processResults: function (data, page) {
+                // parse the results into the format expected by Select2.
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data
+                return {
+                    //results: data.tags
+                    results: data.items
+                };
+            },
+            cache: true
+        },
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 1,
+        language: {
+            inputTooShort: function () { return ''; }
+        },
+        templateResult: formatRepo, // omitted for brevity, see the source of this page
+        templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+    });
+
 });
+
+function formatRepo (tag) {
+    if (tag.loading) return tag.text;
+    var markup =
+        '<div class="clearfix">'+
+        '<div class="col-md-12"><i class="fa '+tag.icon+'"></i> '+tag.name+' <span class="label label-default pull-right">'+tag.type+'</span></div>'+
+        '</div>';
+    markup += '</div></div>';
+
+    return markup;
+}
+
+function formatRepoSelection (tag) {
+    if(tag.id != ''){
+        return '<div class="col-md-12"><i class="fa '+tag.icon+'"></i> '+tag.name+' <span class="label label-default">'+tag.type+'</span></div>';
+    }
+    else {
+        return '';
+    }
+}
