@@ -40,12 +40,16 @@ $(function(){
 
     $("#home-search-box").select2({
         ajax: {
-            url: "http://api.e2e.local/api/tags/all.json",
+            url: "http://api.e2e.local/api/search/places.json",
             dataType: 'json',
             delay: 250,
+            id: function(bond){
+                console.log(bond);
+                return parseInt(bond.id)
+            },
             data: function (params) {
                 return {
-                    q: params.term, // search term
+                    keyword: params.term, // search term
                     page: params.page
                 };
             },
@@ -53,9 +57,16 @@ $(function(){
                 // parse the results into the format expected by Select2.
                 // since we are using custom formatting functions we do not need to
                 // alter the remote JSON data
+
+                var select2Data = $.map(data.items, function (obj) {
+                    obj.id = obj.id;
+                    obj.text = obj.name;
+
+                    return obj;
+                });
                 return {
                     //results: data.tags
-                    results: data.items
+                    results: select2Data
                 };
             },
             cache: true
@@ -75,7 +86,7 @@ function formatRepo (tag) {
     if (tag.loading) return tag.text;
     var markup =
         '<div class="clearfix">'+
-        '<div class="col-md-12"><i class="fa '+tag.icon+'"></i> '+tag.name+' <span class="label label-default pull-right">'+tag.type+'</span></div>'+
+        '<div class="col-md-12"><i class="fa fa-university"></i> '+tag.name+' <span class="label label-default pull-right">'+tag.type+'</span></div>'+
         '</div>';
     markup += '</div></div>';
 
@@ -84,7 +95,7 @@ function formatRepo (tag) {
 
 function formatRepoSelection (tag) {
     if(tag.id != ''){
-        return '<div class="col-md-12"><i class="fa '+tag.icon+'"></i> '+tag.name+' <span class="label label-default">'+tag.type+'</span></div>';
+        return '<div class="col-md-12"><i class="fa fa-university"></i> '+tag.name+' <span class="label label-default">'+tag.type+'</span></div>';
     }
     else {
         return '';
