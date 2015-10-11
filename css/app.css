@@ -31,5 +31,15 @@
 .select2-container .select2-selection {height: 50px!important;}
 .select2-container span.select2-selection__arrow {display: none}
 .select2-container--default .select2-selection--single .select2-selection__rendered { line-height: 50px!important; font-weight: bold;}
+.select2.select2-container.select2-container--default{width: 100%!important;}
 .input-lg-50 {height: 50px}
 .label.label-small { padding: .1em .6em .3em!important;font-size: 60%!important;}
+
+/*search list*/
+.search-list{ color: #444}
+.search-list .list-group-item{}
+.search-list .property-img{}
+.search-list .property-img img {width: 100px;max-width: none;}
+/*map*/
+.map-wrapper{}
+.map-wrapper .inner-map-wrapper{min-height: 500px; background-color: white}
