@@ -39,7 +39,9 @@
 .search-list{ color: #444}
 .search-list .list-group-item{}
 .search-list .property-img{}
-.search-list .property-img img {width: 100px;max-width: none;}
+.search-list .property-img img {width: 90px;max-width: none;}
+.search-list .property-desc{}
+.search-list .property-desc .label{ font-weight: normal}
 /*map*/
 .map-wrapper{}
 .map-wrapper .inner-map-wrapper{min-height: 500px; background-color: white}
