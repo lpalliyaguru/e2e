@@ -1,39 +1,48 @@
 var locations = [
-    ['Bondi Beach', -33.890542, 151.274856, 4],
-    ['Coogee Beach', -33.923036, 151.259052, 5],
-    ['Cronulla Beach', -34.028249, 151.157507, 3],
-    ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    ['Maroubra Beach', -33.950198, 151.259302, 1]
+    [
+        "Location 1",
+        "215 West Girard Avenue 19123",
+        "39.9695601",
+        "-75.1395161"
+    ],
+    [
+        "Location 2",
+        "5360 Old York Road 19141",
+        "40.034038",
+        "-75.145223"
+    ],
+    [
+        "Location 3",
+        "1350 W Girard Avenue 19123",
+        "39.9713524",
+        "-75.1590360"
+    ]
 ];
+
+gmarkers = [];
+
 var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center: new google.maps.LatLng(-39.92, 151.25),
+    zoom: 12,
+    center: new google.maps.LatLng(39.9995601, -75.1395161),
     mapTypeId: google.maps.MapTypeId.ROADMAP
 });
+
 var infowindow = new google.maps.InfoWindow();
-var marker, i;
-var markers = new Array();
-for (i = 0; i < locations.length; i++) {
-    marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+
+function createMarker(latlng, html) {
+    var marker = new google.maps.Marker({
+        position: latlng,
         map: map
     });
-    markers.push(marker);
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-        }
-    })(marker, i));
-}
-function AutoCenter() {
-    //  Create a new viewpoint bound
-    var bounds = new google.maps.LatLngBounds();
-    //  Go through each...
-    $.each(markers, function (index, marker) {
-        bounds.extend(marker.position);
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(html);
+        infowindow.open(map, marker);
     });
-    //  Fit these bounds to the map
-    map.fitBounds(bounds);
+    return marker;
 }
-AutoCenter();
+
+for (var i = 0; i < locations.length; i++) {
+    gmarkers[locations[i][0]] =
+        createMarker(new google.maps.LatLng(locations[i][2], locations[i][3]), locations[i][0] + "<br>" + locations[i][1]);
+}
