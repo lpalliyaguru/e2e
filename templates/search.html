@@ -1,0 +1,89 @@
+<section id="header" class="container-fluid main-header">
+    <div class="container home-header-bar">
+        <div class="row clearfix">
+            <div class="col-md-12 column ">
+                <h1 class="text-center">
+                    <img src="/images/logos/final-logo.png" width="200" />
+                </h1>
+            </div>
+        </div>
+    </div><!-- /container  -->
+    <div class="container"  id="home-search" ng-controller="SearchController">
+        <div class="row" >
+            <form ng-submit="onSubmit()">
+                <div class="col-md-2">
+                    <div class="btn-group pull-right" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default input-lg-50" ng-model="rent">Rent</button>
+                        <button type="button" class="btn btn-default input-lg-50" ng-model="sale">Sale</button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class='container-fluid' >
+                        <tags-input ng-model="tags" add-from-autocomplete-only="true">
+                            <auto-complete source="loadTags($query)" debounce-delay="200"></auto-complete>
+                        </tags-input>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="containedr" id="search-results">
+        <div class="col-md-4 col-xs-12 col-sm-12 search-list">
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <a href="#" class="btn btn-default"><i class="fa fa-sort-amount-asc"></i> by price</a>
+                        <a href="#" class="btn btn-default"><i class="fa fa-sort-amount-asc"></i> by distance</a>
+                        <a href="#" class="btn btn-default"><i class="fa fa-sort-amount-asc"></i> latest</a>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-3 property-img">
+                            <img src="/images/properties/1.jpg"  class="img-responsive">
+                        </div>
+                        <div class="col-md-9 property-desc">
+                            <a href="#">Apartment For Rent- Empire Loft Chinatown (D02)</a>
+                            <p>S$4,100/month </p>
+                            <span class="label label-default"><i class="fa fa-bed"></i> 1 bed</span>
+                            <span class="label label-default"><i class="fa fa-child"></i> 1 bath</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-3 property-img">
+                            <img src="/images/properties/1.jpg"  class="img-responsive">
+                        </div>
+                        <div class="col-md-9 property-desc">
+                            <a href="#">Apartment For Rent - Empire Loft Chinatown (D02)</a>
+                            <p>S$4,100/month </p>
+                            <span class="label label-default"><i class="fa fa-bed"></i> 1 bed</span>
+                            <span class="label label-default"><i class="fa fa-child"></i> 1 bath</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-3 property-img">
+                            <img src="/images/properties/1.jpg"  class="img-responsive">
+                        </div>
+                        <div class="col-md-9">
+                            <a href="#">Apartment For Rent - Empire Loft Chinatown (D02)</a>
+                            <p>S$4,100/month </p>
+                            <span class="label label-default"><i class="fa fa-bed"></i> 1 bed</span>
+                            <span class="label label-default"><i class="fa fa-child"></i> 1 bath</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 map-wrapper">
+            <div class="inner-map-wrapper"></div>
+        </div>
+    </div>
+</section>
