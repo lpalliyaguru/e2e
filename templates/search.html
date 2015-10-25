@@ -1,25 +1,17 @@
 <section id="header" class="container-fluid main-header">
-    <div class="container home-header-bar">
-        <div class="row clearfix">
-            <div class="col-md-12 column ">
-                <h1 class="text-center">
-                    <img src="/images/logos/final-logo.png" width="200" />
-                </h1>
-            </div>
-        </div>
-    </div><!-- /container  -->
+    <!-- /container  -->
     <div class="container"  id="home-search">
         <div class="row" >
             <form ng-submit="onSubmit()">
                 <div class="col-md-2">
                     <div class="btn-group pull-right" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default input-lg-50" ng-model="rent">Rent</button>
-                        <button type="button" class="btn btn-default input-lg-50" ng-model="sale">Sale</button>
+                        <button type="button" class="btn btn-default input-lg-50" ng-model="rent" ng-class="{'active': rent}" ng-click="toggle('rent')">Rent</button>
+                        <button type="button" class="btn btn-default input-lg-50" ng-model="sale" ng-class="{'active': sale}" ng-click="toggle('sale')">Sale</button>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class='container-fluid' >
-                        <tags-input ng-model="tags" add-from-autocomplete-only="true">
+                        <tags-input ng-model="places" add-from-autocomplete-only="true">
                             <auto-complete source="loadTags($query)" debounce-delay="200"></auto-complete>
                         </tags-input>
                     </div>

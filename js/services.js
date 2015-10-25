@@ -1,4 +1,4 @@
-e2eApp.service('placeService', function($q, Place){
+e2eApp.service('PlaceService', function($q, Place){
     var self =  {
         places: [],
         loadPlaces : function(query){
@@ -19,5 +19,21 @@ e2eApp.service('placeService', function($q, Place){
             return deferred.promise;
         }
     };
+    return self;
+});
+
+e2eApp.service('HelperService', function(){
+    var parts = [];
+    var self = {
+        rebuildPlacesArray : function(places){
+            var placeList = [];
+            angular.forEach(places, function(placeStr){
+                parts = placeStr.split(':');
+                placeList.push({id: parts[0], text: parts[1]});
+            });
+            return placeList;
+        }
+    };
+
     return self;
 });
