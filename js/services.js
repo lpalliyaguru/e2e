@@ -5,7 +5,7 @@ e2eApp.service('PlaceService', function($q, Place){
             var deferred = $q.defer();
             deferred.resolve(self.places);
 
-            Place.get({"keyword" : query }, function(data){
+            Place.search({"query" : query}, function(data){
                 self.places = [];
                 angular.forEach(data.data, function(place){
                     self.places.push({
@@ -21,6 +21,24 @@ e2eApp.service('PlaceService', function($q, Place){
     };
     return self;
 });
+
+e2eApp.service('PropertyService', function($q, Property){
+    var self =  {
+        props: [],
+        loadProps: function(places, rent,sale){
+
+            return Property.search(
+                {
+                    "places" : places,
+                    "rent": rent,
+                    "sale": sale
+                }
+            );
+        }
+    };
+    return self;
+});
+
 
 e2eApp.service('HelperService', function(){
     var parts = [];
