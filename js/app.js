@@ -1,7 +1,8 @@
 var e2eApp = angular.module('e2e',[
     'ngResource',
     'ngTagsInput',
-    'ui.router'
+    'ui.router',
+    'uiGmapgoogle-maps'
 ]);
 
 e2eApp.config(function($stateProvider, $urlRouterProvider){

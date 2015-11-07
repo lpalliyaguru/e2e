@@ -76,7 +76,10 @@
         </div>
         <div class="col-md-8 col-xs-12 col-sm-12 map-wrapper">
             <div class="inner-map-wrapper">
-
+                <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                    <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+                    </ui-gmap-markers>
+                </ui-gmap-google-map>
             </div>
         </div>
     </div>

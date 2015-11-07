@@ -46,3 +46,4 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 /*map*/
 .map-wrapper{}
 .map-wrapper .inner-map-wrapper{min-height: 500px; background-color: white}
+.angular-google-map-container { height: 500px; }
