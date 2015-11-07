@@ -1,5 +1,5 @@
 e2eApp.factory('Place', function($resource){
-    return $resource('http://api.e2e.local/api/places/:id/:action',
+    return $resource(apiUrl + '/api/places/:id/:action',
         {
             id: '@id'
         },
@@ -15,7 +15,7 @@ e2eApp.factory('Place', function($resource){
 });
 
 e2eApp.factory('Property', function($resource){
-    return $resource('http://api.e2e.local/api/properties/:id/:action',
+    return $resource(apiUrl + '/api/properties/:id/:action',
         {
             id: '@id'
         },
