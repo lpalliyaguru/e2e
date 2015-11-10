@@ -39,6 +39,7 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 /*search list*/
 .search-list{ color: #444}
 .search-list .list-group-item{}
+.search-list .list-group-item.active { background-color: #D1D3D5;border-color: #B3B6B9;}
 .search-list .property-img{}
 .search-list .property-img img {width: 90px;max-width: none;}
 .search-list .property-desc{}
@@ -47,3 +48,4 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .map-wrapper{}
 .map-wrapper .inner-map-wrapper{min-height: 500px; background-color: white}
 .angular-google-map-container { height: 500px; }
+.map-wrapper .marker-wrapper {width: 250px;overflow: hidden}

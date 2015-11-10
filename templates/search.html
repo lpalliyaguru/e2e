@@ -33,7 +33,7 @@
                         <a href="#" class="btn btn-default"><i class="fa fa-sort-amount-asc"></i> latest</a>
                     </div>
                 </li>
-                <li class="list-group-item" ng-repeat="prop in props.properties">
+                <li class="list-group-item" ng-class="{'active' : selectedMarker.hashId == prop.id}"  ng-repeat="prop in props.properties">
                     <div class="row">
                         <div class="col-md-3 property-img">
                             <img src="/images/properties/1.jpg"  class="img-responsive">
@@ -46,38 +46,39 @@
                         </div>
                     </div>
                 </li>
-                <!--<li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-3 property-img">
-                            <img src="/images/properties/1.jpg"  class="img-responsive">
-                        </div>
-                        <div class="col-md-9 property-desc">
-                            <a href="#">Apartment For Rent - Empire Loft Chinatown (D02)</a>
-                            <p>S$4,100/month </p>
-                            <span class="label label-default"><i class="fa fa-bed"></i> 1 bed</span>
-                            <span class="label label-default"><i class="fa fa-child"></i> 1 bath</span>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-3 property-img">
-                            <img src="/images/properties/1.jpg"  class="img-responsive">
-                        </div>
-                        <div class="col-md-9">
-                            <a href="#">Apartment For Rent - Empire Loft Chinatown (D02)</a>
-                            <p>S$4,100/month </p>
-                            <span class="label label-default"><i class="fa fa-bed"></i> 1 bed</span>
-                            <span class="label label-default"><i class="fa fa-child"></i> 1 bath</span>
-                        </div>
-                    </div>
-                </li>-->
             </ul>
         </div>
         <div class="col-md-8 col-xs-12 col-sm-12 map-wrapper">
             <div class="inner-map-wrapper">
                 <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                    <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+                    <ui-gmap-markers models="markers"
+                                     coords="'coords'"
+                                     icon="'icon'"
+                                     labelContent="'title'"
+                                     options="'options'">
+                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                <ui-gmap-windows options="windowOptions" show="show" closeClick="closeClick()">
+                                    <div ng-non-bindable class="marker-wrapper">
+                                        <!--<div class="col-md-2">
+                                            <img src="" ng-src="{{ options.cover_image }}">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p><strong>{{options.name}}</strong></p>
+                                        </div>-->
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <img class="img-responsive " src="{{ options.cover_image }}" width="32" />
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p><strong>{{options.name}}</strong></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ui-gmap-windows>
+
+                        </ui-gmap-marker>
+
                     </ui-gmap-markers>
                 </ui-gmap-google-map>
             </div>

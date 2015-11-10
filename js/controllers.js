@@ -51,6 +51,7 @@ e2eApp.controller(
         $scope.rent = $stateParams.rent === 'true';
         $scope.places = HelperService.rebuildPlacesArray(places);
         $scope.markers = [];
+        $scope.selectedMarker = false;
 
         $scope.toggle = function(value){
             if(value == 'sale') {
@@ -90,18 +91,36 @@ e2eApp.controller(
             return defer.promise;
         };
 
-        $scope.map = { center: { latitude: 1.434832, longitude: 103.796258 }, zoom: 15 };
-
+        $scope.map = {
+            center: { latitude: 1.434832, longitude: 103.796258 },
+            zoom: 15
+        };
+        
         $scope.props.$promise.then(function(e){
-            angular.forEach(e.properties, function(prop, index){
-                $scope.markers.push({
-                    id: index,
-                    latitude: prop.location.coordinates[1],
-                    longitude: prop.location.coordinates[0],
-                    title: prop.name
-                });
-            });
-            console.log($scope.markers);
-        });
 
+            angular.forEach(e.properties, function(prop, index){
+                var marker = {
+                    id: index,
+                    hashId : prop.id,
+                    coords: {
+                        latitude: prop.location.coordinates[1],
+                        longitude: prop.location.coordinates[0]
+                    },
+                    options: {
+                        name: prop.name,
+                        cover_image : '/images/properties/1.jpg'//prop.cover_image
+                    },
+                    show : false,
+
+                    events: {
+                        click: function(){
+                            $scope.selectedMarker = marker;
+                            marker.show  = !marker.show;
+                        }
+                    }
+                };
+                $scope.markers.push(marker);
+            });
+
+        });
 }]);
