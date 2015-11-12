@@ -1,3 +1,29 @@
+e2eApp.controller('PropertyController', function($scope){
+
+    $scope.tab = 1;
+
+    $scope.setTab = function(newTab){
+        $scope.tab = newTab;
+    };
+
+    $scope.isSet = function(tabNum){
+        return $scope.tab === tabNum;
+    };
+    $scope.myInterval = -1;
+    $scope.noWrapSlides = false;
+    var slides = $scope.slides = [];
+    $scope.addSlide = function() {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+            image: '//placekitten.com/' + newWidth + '/300',
+            text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+            ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+        });
+    };
+    for (var i=0; i<4; i++) {
+        $scope.addSlide();
+    }
+});
 
 e2eApp.controller("HomeController", function ($scope, $q, PlaceService, $state) {
 
@@ -93,7 +119,10 @@ e2eApp.controller(
 
         $scope.map = {
             center: { latitude: 1.434832, longitude: 103.796258 },
-            zoom: 15
+            zoom: 15,
+            options: {
+
+            }
         };
         var bound = new google.maps.LatLngBounds();
 
@@ -122,6 +151,7 @@ e2eApp.controller(
                 $scope.markers.push(marker);
                 bound.extend( new google.maps.LatLng(prop.location.coordinates[1],prop.location.coordinates[0]) );
             });
+            bound.zoom
             $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
         });
 }]);

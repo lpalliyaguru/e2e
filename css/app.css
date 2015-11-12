@@ -49,3 +49,19 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .map-wrapper .inner-map-wrapper{min-height: 500px; background-color: white}
 .angular-google-map-container { height: 500px; }
 .map-wrapper .marker-wrapper {width: 250px;overflow: hidden}
+
+/* property page */
+#property-carousel > div{
+      height: 200px;
+  }
+#property-carousel img{
+    margin:auto;
+    width: 400px;
+}
+#property-carousel {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
