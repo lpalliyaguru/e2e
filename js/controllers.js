@@ -95,9 +95,9 @@ e2eApp.controller(
             center: { latitude: 1.434832, longitude: 103.796258 },
             zoom: 15
         };
-        
-        $scope.props.$promise.then(function(e){
+        var bound = new google.maps.LatLngBounds();
 
+        $scope.props.$promise.then(function(e){
             angular.forEach(e.properties, function(prop, index){
                 var marker = {
                     id: index,
@@ -120,7 +120,8 @@ e2eApp.controller(
                     }
                 };
                 $scope.markers.push(marker);
+                bound.extend( new google.maps.LatLng(prop.location.coordinates[1],prop.location.coordinates[0]) );
             });
-
+            $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
         });
 }]);
