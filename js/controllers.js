@@ -1,17 +1,9 @@
 e2eApp.controller('PropertyController', function($scope){
 
-    $scope.tab = 1;
-
-    $scope.setTab = function(newTab){
-        $scope.tab = newTab;
-    };
-
-    $scope.isSet = function(tabNum){
-        return $scope.tab === tabNum;
-    };
     $scope.myInterval = -1;
     $scope.noWrapSlides = false;
     var slides = $scope.slides = [];
+
     $scope.addSlide = function() {
         var newWidth = 600 + slides.length + 1;
         slides.push({

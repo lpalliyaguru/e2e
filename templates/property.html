@@ -1,41 +1,126 @@
 <section id="header" class="container-fluid main-header">
-    <div class="container">
-        <div>
+    <div class="container property-container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="panel panel-default property-container-description">
+                    <div class="panel-heading">
 
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" ng-class=" { active: isSet(1) }">
-                    <a href ng-click="setTab(1)"><i class="fa fa-university"></i> Property Details</a>
-                </li>
-                <li role="presentation" ng-class=" { active: isSet(2) }">
-                    <a href ng-click="setTab(2)"><i class="fa fa-paper-plane"></i> Location</a>
-                </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" ng-show="isSet(1)" class="tab-pane" ng-class="{ active: isSet(1) }">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div style="height: 305px">
-                                <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
-                                    <uib-slide ng-repeat="slide in slides" active="slide.active">
-                                        <img ng-src="{{slide.image}}" style="margin:auto;">
-                                        <div class="carousel-caption">
-                                            <h4>Slide {{$index}}</h4>
-                                            <p>{{slide.text}}</p>
-                                        </div>
-                                    </uib-slide>
-                                </uib-carousel>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div style="height: 305px">
+                                    <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+                                        <uib-slide ng-repeat="slide in slides" active="slide.active">
+                                            <img ng-src="{{slide.image}}" ng-model="mainImage" style="margin:auto;">
+                                        </uib-slide>
+                                    </uib-carousel>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12 carousel-navigator">
+                                <div style="height: 100px">
+                                    <ul class="list-inline">
+                                        <li class="thumbnail" ng-repeat="slide in slides">
+                                            <a ng-click="setActive(slide)"><img ng-src="{{slide.image}}"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4><b><i class="fa fa-university"></i> HDB Apartment For Rent - 612 Woodlands Avenue 4 (D25)</b></h4>
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span><b>Bedrooms:</b></span>
+                                        <span class="qty pull-right">4</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Bathrooms:</b></span>
+                                        <span class="qty pull-right">2</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Property type:</b></span>
+                                        <span class="qty pull-right">Condo</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Square feet:</b></span>
+                                        <span class="qty pull-right">1,700 sqft</span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span><b>Year:</b></span>
+                                        <span class="qty pull-right">2010</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Listing type:</b></span>
+                                        <span class="qty pull-right">For Sale</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Parking:</b></span>
+                                        <span class="qty pull-right">Assigned</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Neighborhood:</b></span>
+                                        <span class="qty pull-right">Oceanfront</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Description</h4>
+                                Pellentesque habitant morbi tristique senectus et netus et malesuada
+                                fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+                                ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+                                egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                                leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum
+                                erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean
+                                fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci,
+                                sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+                                facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
+                                neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat
+                                volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
+                                luctus, metus
+                            </div>
                         </div>
                     </div>
-
                 </div>
-                <div role="tabpanel" ng-show="isSet(2)" class="tab-pane" ng-class="{ active: isSet(2) }">Property location section</div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-default property-container-map">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-send"></i> Location </h3>
+                    </div>
+                    <div class="panel-body property-container-map-wrapper">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img class="map-image" src="http://www.lankwaifonghotel.com.hk/d/kosmopolito/media/google-map-LKFH-201226e4de.jpg" />
+                            </div>
+                        </div>
+                        <div class="row property-container-seller">
+                            <div class="col-md-3">
+                                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" class="avatar-image"/>
+                            </div>
+                            <div class="col-md-9">
+                                <p>John Doe</p>
+                                <p><a href="mailto:john@gmail.com"><i class="fa fa-envelope"></i> john@gmail.com</a></p>
+                                <p><a href="tel:+6590294521"><i class="fa fa-phone"></i> +6590294521</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
