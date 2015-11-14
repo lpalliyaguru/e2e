@@ -1,8 +1,11 @@
-e2eApp.controller('PropertyController', function($scope){
+e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyService', function($scope, $stateParams, PropertyService){
 
+    var id = $stateParams.id;
     $scope.myInterval = -1;
     $scope.noWrapSlides = false;
     var slides = $scope.slides = [];
+
+    $scope.prop = PropertyService.get(id);
 
     $scope.addSlide = function() {
         var newWidth = 600 + slides.length + 1;
@@ -12,10 +15,12 @@ e2eApp.controller('PropertyController', function($scope){
             ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
         });
     };
+
     for (var i=0; i<4; i++) {
         $scope.addSlide();
     }
-});
+
+}]);
 
 e2eApp.controller("HomeController", function ($scope, $q, PlaceService, $state) {
 

@@ -25,6 +25,11 @@ e2eApp.service('PlaceService', function($q, Place){
 e2eApp.service('PropertyService', function($q, Property){
     var self =  {
         props: [],
+        get: function (id) {
+            return Property.get({
+                "id" : id
+            });
+        },
         loadProps: function(places, rent,sale){
 
             return Property.search(
