@@ -4,7 +4,7 @@
             <div class="col-md-7">
                 <div class="panel panel-default property-container-description">
                     <div class="panel-heading">
-
+                        &nbsp;
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -23,7 +23,7 @@
                                 <div style="height: 100px">
                                     <ul class="list-inline">
                                         <li class="thumbnail" ng-repeat="slide in slides">
-                                            <a ng-click="setActive(slide)"><img ng-src="{{slide.image}}"></a>
+                                            <a ng-click="slide.active = true"><img ng-src="{{slide.image}}"></a>
                                         </li>
                                     </ul>
                                 </div>
