@@ -71,7 +71,7 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .property-container .property-container-description {}
 .property-container .property-container-description .carousel-navigator{ height: 100px; padding: 10px}
 .property-container .property-container-description .carousel-navigator .thumbnail{ width: 100px}
-.property-container .property-container-description .carousel-navigator .thumbnail img{ width: 100%; cursor: pointer}
+.property-container .property-container-description .carousel-navigator .thumbnail img{ width: 100%; cursor: pointer; height: 60px}
 .property-container .property-container-map {}
 .property-container .property-container-map-wrapper {}
 .property-container .property-container-map-wrapper .map-image {width: 100%; height: 300px;}

@@ -7,18 +7,20 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
 
     $scope.prop = PropertyService.get(id);
 
-    $scope.addSlide = function() {
-        var newWidth = 600 + slides.length + 1;
-        slides.push({
-            image: '//placekitten.com/' + newWidth + '/300',
-            text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-            ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-        });
-    };
-
-    for (var i=0; i<4; i++) {
-        $scope.addSlide();
-    }
+    $scope.slides = [
+        {
+            image : 'http://sg2-cdn.pgimgs.com/listing/13177735/UPHO.60324451.V550.jpg',
+            text:''
+        },
+        {
+            image: 'http://sg2-cdn.pgimgs.com/property/1411/PPHO.30070994.V550.jpg',
+            text: ''
+        },
+        {
+            image: 'http://sg2-cdn.pgimgs.com/property/1411/PPHO.30070998.V550.jpg',
+            text : ''
+        }
+    ];
 
 }]);
 
