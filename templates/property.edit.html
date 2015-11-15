@@ -41,8 +41,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4><b><i class="fa fa-university"></i> {{ property.name }}</b></h4>
-                                <small><i class="fa fa-send"></i> {{ property.address }}</small>
+                                <h4><b><i class="fa fa-university"></i><span editable-text="property.name"> {{ property.name }} </span></b></h4>
+                                <small><i class="fa fa-send"></i> <span editable-text="property.name">{{ property.address }} </span></small>
                             </div>
                         </div>
                         <div class="row">
@@ -50,7 +50,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Bedrooms:</b></span>
-                                        <span class="qty pull-right">4</span>
+                                        <span class="qty pull-right" editable-number="property.bedrooms" e-min="1">4</span>
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Bathrooms:</b></span>

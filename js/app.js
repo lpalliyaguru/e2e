@@ -4,8 +4,13 @@ var e2eApp = angular.module('e2e',[
     'ui.router',
     'uiGmapgoogle-maps',
     'ui.bootstrap',
-    'angularFileUpload'
+    'angularFileUpload',
+    'xeditable'
 ]);
+
+e2eApp.run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
 
 e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider){
 
