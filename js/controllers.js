@@ -1,3 +1,38 @@
+e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
+    console.log('asdd');
+}]);
+
+e2eApp.controller(
+    'PropertyEditController',
+    ['$scope', '$stateParams', 'PropertyService','FileUploader', 'Helper', function ($scope, $stateParams, PropertyService, FileUploader, Helper) {
+        $scope.propertyHasImages = false;
+        $scope.slides = [];
+        $scope.property = PropertyService.get($stateParams.id);
+
+        $scope.property.$promise.then(function(){
+            angular.forEach($scope.property.images, function(image){
+                $scope.propertyHasImages = true;
+                $scope.slides.push({ image : image, text : ''})
+            });
+
+            if(!$scope.propertyHasImages) {
+                $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
+            }
+        });
+
+        $scope.uploader = new FileUploader({
+            url: apiUrl + '/api/properties/' + $stateParams.id + '/image',
+            method : 'OPTIONS',
+            autoUpload : true
+        });
+        Helper.manageUploader($scope.uploader, $scope);
+        $scope.triggerClick = function(){
+            console.log('asdsad');
+            angular.element('#image-uploader').trigger('click');
+
+        };
+    }]);
+
 e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyService', function($scope, $stateParams, PropertyService){
 
     var id = $stateParams.id;
@@ -5,7 +40,7 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
     $scope.noWrapSlides = false;
     var slides = $scope.slides = [];
 
-    $scope.prop = PropertyService.get(id);
+    $scope.property = PropertyService.get(id);
 
     $scope.slides = [
         {

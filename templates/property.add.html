@@ -4,7 +4,7 @@
             <div class="col-md-7">
                 <div class="panel panel-default property-container-description">
                     <div class="panel-heading">
-                        &nbsp;
+                        Create your Property Posting
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -31,8 +31,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4><b><i class="fa fa-university"></i> {{ property.name }}</b></h4>
-                                <small><i class="fa fa-send"></i> {{ property.address }}</small>
+                                <h4><b><i class="fa fa-university"></i> {{ prop.property.name }}</b></h4>
+                                <small><i class="fa fa-send"></i> {{ prop.property.address }}</small>
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Property type:</b></span>
-                                        <span class="qty pull-right">{{ property.type }}</span>
+                                        <span class="qty pull-right">{{ prop.property.type }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Square feet:</b></span>
@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h4>Description</h4>
-                                {{ property.description }}
+                                {{ prop.property.description }}
                             </div>
                         </div>
                     </div>

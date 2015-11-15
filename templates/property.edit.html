@@ -2,9 +2,9 @@
     <div class="container property-container">
         <div class="row">
             <div class="col-md-7">
-                <div class="panel panel-default property-container-description">
+                <div class="panel panel-default property-edit-container-info">
                     <div class="panel-heading">
-                        &nbsp;
+                        <i class="fa fa-edit"></i> Create your Property Posting
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -22,8 +22,18 @@
                             <div class="col-md-12 carousel-navigator">
                                 <div style="height: 100px">
                                     <ul class="list-inline">
-                                        <li class="thumbnail" ng-repeat="slide in slides">
+                                        <li class="thumbnail-image" ng-repeat="slide in slides" ng-show="slides.length != 0 && propertyHasImages">
                                             <a ng-click="slide.active = true"><img ng-src="{{slide.image}}"></a>
+                                        </li>
+                                        <li class="img-upload-wrapper">
+                                            <input
+                                                    type="file"
+                                                    id="image-uploader"
+                                                    ng-model="image"
+                                                    class="hidden"
+                                                    nv-file-select
+                                                    uploader="uploader">
+                                            <a  onclick="document.getElementById('image-uploader').click()"><i class="fa fa-upload"></i> </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -48,7 +58,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Property type:</b></span>
-                                        <span class="qty pull-right">{{ property.type }}</span>
+                                        <span class="qty pull-right">{{ prop.property.type }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Square feet:</b></span>

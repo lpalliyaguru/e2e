@@ -3,7 +3,8 @@ var e2eApp = angular.module('e2e',[
     'ngTagsInput',
     'ui.router',
     'uiGmapgoogle-maps',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angularFileUpload'
 ]);
 
 e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider){
@@ -27,10 +28,21 @@ e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
 
         })
         .state('property', {
-            url:"/property/:id",
+            url:"/property/v/:id",
             templateUrl: 'templates/property.html',
             controller: 'PropertyController'
-        });;
+        })
+        .state('propertyAdd', {
+            url:"/property/a",
+            templateUrl: 'templates/property.add.html',
+            controller: 'PropertyAddController'
+        })
+        .state('propertyEdit', {
+            url:"/property/e/:id",
+            templateUrl: 'templates/property.edit.html',
+            controller: 'PropertyEditController'
+        })
+    ;
 
         $urlRouterProvider.otherwise('/');
 });
