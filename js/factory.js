@@ -20,6 +20,9 @@ e2eApp.factory('Property', function($resource){
             id: '@id'
         },
         {
+            'update': {
+                method : 'PUT'
+            },
             'search': {
                 method: 'GET',
                 params: {
@@ -29,5 +32,6 @@ e2eApp.factory('Property', function($resource){
                     sale: '@sale'
                 }
             }
+
         });
 });

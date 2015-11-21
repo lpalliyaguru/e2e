@@ -39,6 +39,10 @@ e2eApp.service('PropertyService', function($q, Property){
                     "sale": sale
                 }
             );
+        },
+        save: function(property){
+                console.log(property);
+                return Property.update({id: property.id}, property);
         }
     };
     return self;

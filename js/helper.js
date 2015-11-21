@@ -1,7 +1,7 @@
 e2eApp.service('Helper', function($q, Place){
 
     var self = {
-        manageUploader : function(uploader, $scope){
+        manageUploader : function($scope){
             /*uploader.onWhenAddingFileFailed = function(item /!*{File|FileLikeObject}*!/, filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
@@ -27,18 +27,19 @@ e2eApp.service('Helper', function($q, Place){
             uploader.onCancelItem = function(fileItem, response, status, headers) {
                 console.info('onCancelItem', fileItem, response, status, headers);
             };*/
-            uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
                 if(!$scope.propertyHasImages) {
                     $scope.slides.shift();
                 }
                 $scope.propertyHasImages = true;
+                $scope.property.images.push(response.image);
                 $scope.slides.push({
                     image : response.image,
                     text : ''
                 });
             };
 
-            uploader.onCompleteAll = function(e) {
+            $scope.uploader.onCompleteAll = function(e) {
 
 
             };

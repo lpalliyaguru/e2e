@@ -5,6 +5,10 @@
                 <div class="panel panel-default property-edit-container-info">
                     <div class="panel-heading">
                         <i class="fa fa-edit"></i> Create your Property Posting
+                        <div class="pull-right">
+                            <button class="btn btn-xs btn-primary" ng-click="save()"><i class="fa fa-save"></i> save</button>
+                            <button class="btn btn-xs btn-success"><i class="fa fa-send"></i> publish</button>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -41,28 +45,39 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4><b><i class="fa fa-university"></i><span editable-text="property.name"> {{ property.name }} </span></b></h4>
-                                <small><i class="fa fa-send"></i> <span editable-text="property.name">{{ property.address }} </span></small>
+                                <h4><b><i class="fa fa-university"></i><span editable-text="property.name"> {{ property.name || 'Sample Name' }} </span></b></h4>
+                                <small><i class="fa fa-send"></i> <span editable-text="property.address">{{ property.address || 'Sample Address'  }} </span></small><br>
+                                <small><i class="fa fa-map-marker"></i> <span editable-text="property.zip">{{ property.zip || 'Sample Zip' }} </span></small>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <span><b>Bedrooms:</b></span>
-                                        <span class="qty pull-right" editable-number="property.bedrooms" e-min="1">4</span>
+                                        <span><b>Price:</b></span>
+                                        <span class="qty pull-right" editable-text="property.price">{{ property.price || '2,100' }}</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <span><b>Bathrooms:</b></span>
-                                        <span class="qty pull-right">2</span>
+                                        <span><b>Price psf:</b></span>
+                                        <span class="qty pull-right" editable-number="property.pricePsf" e-min="0.5">{{ property.pricePsf || 2.5}}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Property type:</b></span>
-                                        <span class="qty pull-right">{{ prop.property.type }}</span>
+                                        <span class="qty pull-right" editable-select="property.type" e-ng-options="s.value as s.text for s in types">
+                                            {{ showStatus() }}
+                                        </span>
                                     </li>
                                     <li class="list-group-item">
-                                        <span><b>Square feet:</b></span>
-                                        <span class="qty pull-right">1,700 sqft</span>
+                                        <span><b>Floor Area:</b></span>
+                                        <span class="qty pull-right" editable-number="property.floorArea" e-min="0.5">{{ property.floorArea || 2.5 }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Tenure</b></span>
+                                        <span class="qty pull-right" editable-text="property.tenure">{{ property.tenure || '99 year lease' }}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Condition</b></span>
+                                        <span class="qty pull-right" editable-text="property.condition">{{ property.condition || 'Fully Furnished' }}</span>
                                     </li>
                                 </ul>
 
@@ -71,7 +86,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Year:</b></span>
-                                        <span class="qty pull-right">2010</span>
+                                        <span class="qty pull-right" editable-text="property.year">{{ property.year || '2010' }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Listing type:</b></span>
@@ -82,8 +97,12 @@
                                         <span class="qty pull-right">Assigned</span>
                                     </li>
                                     <li class="list-group-item">
-                                        <span><b>Neighborhood:</b></span>
-                                        <span class="qty pull-right">Oceanfront</span>
+                                        <span><b>Lease term:</b></span>
+                                        <span class="qty pull-right" editable-text="property.leaseTerm">{{ property.leaseTerm || '99 years'}}</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><b>Special:</b></span>
+                                        <span class="qty pull-right" editable-text="property.special">{{ property.special.join(', ')}}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -91,7 +110,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h4>Description</h4>
-                                {{ property.description }}
+                                <p editable-textarea="property.description" e-rows="7" e-cols="40">{{ property.description }}</p>
                             </div>
                         </div>
                     </div>

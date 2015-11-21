@@ -4,20 +4,33 @@ e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
 
 e2eApp.controller(
     'PropertyEditController',
-    ['$scope', '$stateParams', 'PropertyService','FileUploader', 'Helper', function ($scope, $stateParams, PropertyService, FileUploader, Helper) {
+    ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper) {
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
 
+        $scope.types = [
+            { value : "HDB", text: "HDB" },
+            { value : "LND", text: "Landed House" },
+            { value : "CND", text: "Condo" }
+        ];
+
+        $scope.showStatus = function() {
+            var selected = $filter('filter')($scope.types , { value : $scope.property.type });
+            return ($scope.property.type && selected.length) ? selected[0].text : 'Not set';
+        };
+
         $scope.property.$promise.then(function(){
+
             angular.forEach($scope.property.images, function(image){
                 $scope.propertyHasImages = true;
-                $scope.slides.push({ image : image, text : ''})
+                $scope.slides.push({ image : image, text : ''});
             });
 
             if(!$scope.propertyHasImages) {
                 $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
             }
+            Helper.manageUploader($scope);
         });
 
         $scope.uploader = new FileUploader({
@@ -25,12 +38,15 @@ e2eApp.controller(
             method : 'OPTIONS',
             autoUpload : true
         });
-        Helper.manageUploader($scope.uploader, $scope);
-        $scope.triggerClick = function(){
-            console.log('asdsad');
-            angular.element('#image-uploader').trigger('click');
 
-        };
+        $scope.save = function() {
+            $scope.property.$promise.then(function(){
+                PropertyService.save($scope.property);
+
+            });
+        }
+
+
     }]);
 
 e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyService', function($scope, $stateParams, PropertyService){
