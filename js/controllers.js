@@ -22,7 +22,7 @@ e2eApp.controller(
 
         $scope.property.$promise.then(function(){
 
-            angular.forEach($scope.property.images, function(image){
+            angular.forEach($scope.property.asset.images, function(image){
                 $scope.propertyHasImages = true;
                 $scope.slides.push({ image : image, text : ''});
             });
@@ -34,15 +34,13 @@ e2eApp.controller(
         });
 
         $scope.uploader = new FileUploader({
-            url: apiUrl + '/api/properties/' + $stateParams.id + '/image',
-            method : 'OPTIONS',
+            url: apiUrl + '/api/properties/' + $stateParams.id + '/images',
             autoUpload : true
         });
 
         $scope.save = function() {
             $scope.property.$promise.then(function(){
                 PropertyService.save($scope.property);
-
             });
         }
 
