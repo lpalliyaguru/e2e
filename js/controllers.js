@@ -8,7 +8,7 @@ e2eApp.controller(
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
-
+        $scope.uploading = false;
         $scope.types = [
             { value : "HDB", text: "HDB" },
             { value : "LND", text: "Landed House" },
@@ -18,6 +18,11 @@ e2eApp.controller(
         $scope.showStatus = function() {
             var selected = $filter('filter')($scope.types , { value : $scope.property.type });
             return ($scope.property.type && selected.length) ? selected[0].text : 'Not set';
+        };
+
+        $scope.removeImage = function(imagePosition) {
+            $scope.slides.splice(imagePosition, 1);
+            $scope.property.asset.images.splice(imagePosition, 1);
         };
 
         $scope.property.$promise.then(function(){
