@@ -1,4 +1,4 @@
-body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-repeat;background-size: cover;}
+body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-repeat;background-position: right top; background-attachment: fixed;background-size: cover;}
 .no-link a,.no-link a:hover{text-decoration: none; color:#fff!important;}
 .survey-header{background-color: #65216C; position: fixed; border-bottom: 1px solid #915198; padding: 10px 0}
 .survey-container{padding-top:130px }
@@ -83,3 +83,28 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .property-edit-container-info .carousel-navigator {}
 .property-edit-container-info .carousel-navigator .thumbnail-image{}
 .property-edit-container-info .carousel-navigator .thumbnail-image img{ height: 60px;  width: 90px;}
+.img-wrap {
+    position: relative;
+    display: inline-block;
+    border: 1px red solid;
+    font-size: 0;
+}
+.img-wrap .close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+    background-color: #FFF;
+    padding: 5px 2px 2px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: .2;
+    text-align: center;
+    font-size: 22px;
+    line-height: 10px;
+    border-radius: 50%;
+}
+.img-wrap:hover .close {
+    opacity: 1;
+}

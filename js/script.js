@@ -40,7 +40,7 @@ $(function(){
 
     $("#home-search-box").select2({
         ajax: {
-            url: "http://api.e2e.local/api/search/places.json",
+            url: "http://api.e2e.loc/api/search/places.json",
             dataType: 'json',
             delay: 250,
             id: function(bond){

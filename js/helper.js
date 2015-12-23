@@ -32,6 +32,7 @@ e2eApp.service('Helper', function($q, Place){
                     $scope.slides.shift();
                 }
                 $scope.propertyHasImages = true;
+                console.log(response.image);
                 $scope.property.images.push(response.image);
                 $scope.slides.push({
                     image : response.image,

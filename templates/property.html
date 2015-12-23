@@ -1,5 +1,5 @@
 <section id="header" class="container-fluid main-header">
-    <div class="container property-container">
+    <div class="container property-container" style="position: relative;">
         <div class="row">
             <div class="col-md-7">
                 <div class="panel panel-default property-container-description">
@@ -31,12 +31,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <h4><b>Property Address</b></h4>
                                 <h4><b><i class="fa fa-university"></i> {{ property.name }}</b></h4>
                                 <small><i class="fa fa-send"></i> {{ property.address }}</small>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
+                                <h4><b>Property Type</b></h4>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Bedrooms:</b></span>
@@ -58,6 +60,7 @@
 
                             </div>
                             <div class="col-md-6">
+                                <h4><b>Property Information</b></h4>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Year:</b></span>
@@ -80,7 +83,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>Description</h4>
+                                <h4><b>Description</b></h4>
                                 {{ property.description }}
                             </div>
                         </div>

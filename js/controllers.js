@@ -1,10 +1,9 @@
 e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
-    console.log('asdd');
 }]);
 
 e2eApp.controller(
     'PropertyEditController',
-    ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper) {
+    ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', 'Geocode', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper, Geocode) {
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
@@ -21,8 +20,7 @@ e2eApp.controller(
         };
 
         $scope.property.$promise.then(function(){
-
-            angular.forEach($scope.property.images, function(image){
+            angular.forEach($scope.property.asset.images, function(image){
                 $scope.propertyHasImages = true;
                 $scope.slides.push({ image : image, text : ''});
             });
@@ -30,22 +28,46 @@ e2eApp.controller(
             if(!$scope.propertyHasImages) {
                 $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
             }
+
+            $scope.removeRandomSlide = function (image) {
+                //$scope.slides.shift();
+                 $scope.slides.splice(image);
+            };
+
             Helper.manageUploader($scope);
+            $scope.loading = true ;
         });
 
         $scope.uploader = new FileUploader({
-            url: apiUrl + '/api/properties/' + $stateParams.id + '/image',
-            method : 'OPTIONS',
+
+            url: apiUrl + '/api/properties/' + $stateParams.id + '/images.json',
+            method : 'POST',
             autoUpload : true
         });
 
+        //get Latitude & Longitude
+        $scope.getLatLan = function($http){
+            console.log($scope.property.zip);
+            Geocode.getInformation($scope.property.zip).
+                success(function(data){
+                    console.log(data.results[0].geometry.location)
+                }).
+                error(function(data){
+                    alert("Error");
+                });
+          //PropertyService.save($scope.property);
+        };
+
+        $scope.save = function(){
+            PropertyService.save($scope.property);
+        };
+
         $scope.save = function() {
+            console.log("I am in");
             $scope.property.$promise.then(function(){
                 PropertyService.save($scope.property);
-
             });
         }
-
 
     }]);
 

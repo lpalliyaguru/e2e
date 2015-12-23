@@ -6,7 +6,7 @@
                     <div class="panel-heading">
                         <i class="fa fa-edit"></i> Create your Property Posting
                         <div class="pull-right">
-                            <button class="btn btn-xs btn-primary" ng-click="save()"><i class="fa fa-save"></i> save</button>
+                            <!---<button class="btn btn-xs btn-primary"><i class="fa fa-save"></i> save</button>--->
                             <button class="btn btn-xs btn-success"><i class="fa fa-send"></i> publish</button>
                         </div>
                     </div>
@@ -24,11 +24,16 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 carousel-navigator">
-                                <div style="height: 100px">
+                                <div class="image-upload">
                                     <ul class="list-inline">
-                                        <li class="thumbnail-image" ng-repeat="slide in slides" ng-show="slides.length != 0 && propertyHasImages">
-                                            <a ng-click="slide.active = true"><img ng-src="{{slide.image}}"></a>
+                                        <li class="thumbnail-image" ng-hide="checked" ng-repeat="slide in slides" ng-show="slides.length != 0 && propertyHasImages">
+                                            <div class="img-wrap">
+                                                <span class="close" ng-click="removeRandomSlide(slide.image )">&times;</span>
+                                                <a ng-click="slide.active = true"><img ng-src="{{slide.image}}"></a>
+                                            </div>
+                                          <!-- <button ng-click="removeRandomSlide()">Remove Slide</button>-->
                                         </li>
+
                                         <li class="img-upload-wrapper">
                                             <input
                                                     type="file"
@@ -37,7 +42,7 @@
                                                     class="hidden"
                                                     nv-file-select
                                                     uploader="uploader">
-                                            <a  onclick="document.getElementById('image-uploader').click()"><i class="fa fa-upload"></i> </a>
+                                            <a  onclick="document.getElementById('image-uploader').click()"><i class="fa fa-upload"></i>     </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -45,13 +50,22 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4><b><i class="fa fa-university"></i><span editable-text="property.name"> {{ property.name || 'Sample Name' }} </span></b></h4>
-                                <small><i class="fa fa-send"></i> <span editable-text="property.address">{{ property.address || 'Sample Address'  }} </span></small><br>
-                                <small><i class="fa fa-map-marker"></i> <span editable-text="property.zip">{{ property.zip || 'Sample Zip' }} </span></small>
+                                <h4><b>Property Address</b></h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <b><i class="fa fa-university"></i><span editable-text="property.name"  onAfterSave="save();"> {{ property.name || 'Sample Name' }} </span></b>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <small><i class="fa fa-send"></i> <span editable-text="property.address"  onAfterSave="save();">{{ property.address || 'Sample Address'  }} </span></small><br>
+                                        <small><i class="fa fa-map-marker"></i> <span editable-text="property.zip" onAfterSave="getLatLan();">{{ property.zip || 'Sample Zip' }} </span></small>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-md-6">
+                                <h4><b>Price Information</b></h4>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Price:</b></span>
@@ -61,6 +75,10 @@
                                         <span><b>Price psf:</b></span>
                                         <span class="qty pull-right" editable-number="property.pricePsf" e-min="0.5">{{ property.pricePsf || 2.5}}</span>
                                     </li>
+                                </ul>
+                            </div>
+                          <div class="col-md-6">
+                              <h4><b>Property Type</b></h4>
                                     <li class="list-group-item">
                                         <span><b>Property type:</b></span>
                                         <span class="qty pull-right" editable-select="property.type" e-ng-options="s.value as s.text for s in types">
@@ -80,9 +98,9 @@
                                         <span class="qty pull-right" editable-text="property.condition">{{ property.condition || 'Fully Furnished' }}</span>
                                     </li>
                                 </ul>
-
                             </div>
                             <div class="col-md-6">
+                                <h4><b>Property <Info></Info></b></h4>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Year:</b></span>
@@ -109,7 +127,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>Description</h4>
+                                <h3><b>Description</b></h3>
                                 <p editable-textarea="property.description" e-rows="7" e-cols="40">{{ property.description }}</p>
                             </div>
                         </div>

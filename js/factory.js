@@ -35,3 +35,12 @@ e2eApp.factory('Property', function($resource){
 
         });
 });
+
+e2eApp.factory('Geocode',function($http){
+    return {
+        getInformation : function(zipcode){
+            var url = 'http://maps.googleapis.com/maps/api/geocode/json?address='+zipCode+'&sensor=true';
+            return $http.get(url);
+        }
+    }
+});

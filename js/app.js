@@ -6,7 +6,22 @@ var e2eApp = angular.module('e2e',[
     'ui.bootstrap',
     'angularFileUpload',
     'xeditable'
-]);
+])
+    /*.directive('loading', function () {
+        return {
+            restrict: 'E',
+            replace:true,
+            template: '<div class="loading"><img src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif" width="20" height="20" />LOADING...</div>',
+            link: function (scope, element, attr) {
+                scope.$watch('loading', function (val) {
+                    if (val)
+                        $(element).show();
+                    else
+                        $(element).hide();
+                });
+            }
+        }
+    });*/
 
 e2eApp.run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'

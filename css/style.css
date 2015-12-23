@@ -38,9 +38,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .lead {
   margin-bottom: 40px;
 }
 #header {
-    padding-top: 20px;
+    /*padding-top: 20px;
     height: 680px;
-    padding-bottom:150px;
+    padding-bottom:150px;*/
 }
 #feature{
     padding-top: 50px;
@@ -563,7 +563,10 @@ fieldset[disabled] .btn-submit.active {
     float: left;
     margin-right: 10px;
 }
-
+.image-upload {
+    height: 100px;
+    overflow-x:scroll;
+}
 
 /**
   MEDIA QUERIES - CAROUSEL TESTIMONIAL
@@ -605,6 +608,8 @@ fieldset[disabled] .btn-submit.active {
     }
 
 }
+
+.loading { border:1px solid #ddd; padding:20px; margin:40px 5px; width:80px;}
 
 /* end carousel - testimonial */
 /*custom styles*/
