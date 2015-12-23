@@ -9,6 +9,8 @@ e2eApp.controller(
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
         $scope.uploading = false;
+        $scope.mouseOn = -1;
+
         $scope.types = [
             { value : "HDB", text: "HDB" },
             { value : "LND", text: "Landed House" },
@@ -49,6 +51,17 @@ e2eApp.controller(
             });
         }
 
+        $scope.setRemovable = function(index){
+            $scope.mouseOn = index;
+        };
+
+        $scope.unsetRemovable = function(index){
+            $scope.mouseOn = -1;
+        };
+
+        $scope.isRemoveable = function (index) {
+            return $scope.mouseOn == index;
+        }
 
     }]);
 

@@ -26,16 +26,8 @@
                             <div class="col-md-12 carousel-navigator">
                                 <div style="height: 100px">
                                     <ul class="list-inline">
-                                        <li class="thumbnail-image" ng-repeat="slide in slides" ng-show="slides.length != 0 && propertyHasImages">
-                                            <a href="" style="
-                                                position: relative;
-                                                top: -5px;
-                                                float: right;
-                                                /* margin-right: -9px; */
-                                                right: 10px;
-                                                font-size: 15px;
-                                                color: red;
-                                            " ng-click="removeImage($index)"><i class="fa fa-close"></i> </a>
+                                        <li class="thumbnail-image" ng-class="{'highlight' : isRemoveable($index)}"  ng-mouseover="setRemovable($index)" ng-mouseleave="unsetRemovable($index)" ng-repeat="slide in slides" ng-show="slides.length != 0 && propertyHasImages">
+                                            <a href="" ng-class="{'remove-image' : isRemoveable($index)}" class="hide-element" ng-click="removeImage($index)"><i class="fa fa-close"></i> </a>
                                             <a ng-click="slide.active = true">
                                                 <img ng-src="{{slide.image}}">
                                             </a>
