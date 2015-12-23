@@ -40,9 +40,12 @@ e2eApp.service('PropertyService', function($q, Property){
                 }
             );
         },
-        save: function(property){
-                console.log(property);
-                return Property.update({id: property.id}, property);
+        save: function($scope){
+            console.log( $scope.property);
+                return Property.update({id: $scope.property.id}, $scope.property, function () {
+                    $scope.saving = false;
+                    $scope.setPublishing = false;
+                });
         }
     };
     return self;

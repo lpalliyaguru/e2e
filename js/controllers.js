@@ -10,7 +10,8 @@ e2eApp.controller(
         $scope.property = PropertyService.get($stateParams.id);
         $scope.uploading = false;
         $scope.mouseOn = -1;
-
+        $scope.saving = false;
+        $scope.setPublishing = false;
         $scope.types = [
             { value : "HDB", text: "HDB" },
             { value : "LND", text: "Landed House" },
@@ -46,10 +47,19 @@ e2eApp.controller(
         });
 
         $scope.save = function() {
+            $scope.saving = true;
             $scope.property.$promise.then(function(){
-                PropertyService.save($scope.property);
+                PropertyService.save($scope);
             });
-        }
+        };
+
+        $scope.publish = function(flag) {
+            $scope.setPublishing = true;
+            $scope.property.$promise.then(function(){
+                $scope.property.published = flag;
+                PropertyService.save($scope);
+            });
+        };
 
         $scope.setRemovable = function(index){
             $scope.mouseOn = index;

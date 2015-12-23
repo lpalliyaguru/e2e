@@ -6,8 +6,29 @@
                     <div class="panel-heading">
                         <i class="fa fa-edit"></i> Create your Property Posting
                         <div class="pull-right">
-                            <button class="btn btn-xs btn-primary" ng-click="save()"><i class="fa fa-save"></i> save</button>
-                            <button class="btn btn-xs btn-success"><i class="fa fa-send"></i> publish</button>
+                            <button
+                                    class="btn btn-xs btn-primary"
+                                    ng-click="save()"
+                                    ladda="saving"
+                                    data-style="expand-left"
+                                    ><i class="fa fa-save"></i> <span ng-show="saving">saving</span><span ng-hide="saving">save</span>
+                            </button>
+                            <button
+                                    ng-if="!property.published"
+                                    class="btn btn-xs btn-success"
+                                    ladda="setPublishing"
+                                    ng-click="publish(true)"
+                                    data-style="expand-left"
+                                    ><i class="fa fa-send"></i> publish
+                            </button>
+                            <button
+                                    ng-if="property.published"
+                                    class="btn btn-xs btn-default"
+                                    ladda="setPublishing"
+                                    data-spinner-color="#444"
+                                    data-style="expand-left"
+                                    ng-click="publish(false)"><i class="fa fa-eye-slash"></i> unpublish
+                            </button>
                         </div>
                     </div>
                     <div class="panel-body">
