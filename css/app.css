@@ -23,7 +23,7 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .link-purple { color: #A80ABB}
 .link-purple:hover { color: #82358b}
 .link-bold-500{font-weight: 500;}
-
+.hide-element {display: none}
 /* home page styles */
 .main-viewport{padding-top: 60px}
 #home-search { padding-top: 40px}
@@ -108,3 +108,7 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .img-wrap:hover .close {
     opacity: 1;
 }
+.property-edit-container-info .carousel-navigator .thumbnail-image{padding: 10px;}
+.property-edit-container-info .carousel-navigator .thumbnail-image.highlight{    background-color: #E4E1E1;}
+.property-edit-container-info .carousel-navigator .thumbnail-image img{ height: 60px;  width: 90px;}
+.property-edit-container-info .carousel-navigator .thumbnail-image .remove-image{display:block!important;position: relative;top: -10px;float: right;margin-right: -10px; font-size: 12px;color: #9A9595;}

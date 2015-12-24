@@ -2,6 +2,12 @@ e2eApp.service('Helper', function($q, Place){
 
     var self = {
         manageUploader : function($scope){
+            $scope.uploader.onAfterAddingAll = function(addedFileItems) {
+                $scope.uploading = true;
+                console.log('onAfterAddingAll',$scope.uploading);
+                //uploader.uploadAll();
+            };
+
             /*uploader.onWhenAddingFileFailed = function(item /!*{File|FileLikeObject}*!/, filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
@@ -32,8 +38,7 @@ e2eApp.service('Helper', function($q, Place){
                     $scope.slides.shift();
                 }
                 $scope.propertyHasImages = true;
-                console.log(response.image);
-                $scope.property.images.push(response.image);
+                $scope.property.asset.images.push(response.image);
                 $scope.slides.push({
                     image : response.image,
                     text : ''
@@ -42,7 +47,8 @@ e2eApp.service('Helper', function($q, Place){
 
             $scope.uploader.onCompleteAll = function(e) {
 
-
+                $scope.uploading = false;
+                console.log('onCompleteAll',$scope.uploading);
             };
         }
     };

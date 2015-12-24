@@ -5,8 +5,9 @@ var e2eApp = angular.module('e2e',[
     'uiGmapgoogle-maps',
     'ui.bootstrap',
     'angularFileUpload',
-    'xeditable'
-])
+    'xeditable',
+    'angular-ladda'
+]);
     /*.directive('loading', function () {
         return {
             restrict: 'E',
@@ -27,12 +28,15 @@ e2eApp.run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider){
+e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider){
 
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
+    });
+    laddaProvider.setOption({
+        style: 'expand-left'
     });
 
     $stateProvider

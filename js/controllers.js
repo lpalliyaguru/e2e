@@ -7,7 +7,10 @@ e2eApp.controller(
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
-
+        $scope.uploading = false;
+        $scope.mouseOn = -1;
+        $scope.saving = false;
+        $scope.setPublishing = false;
         $scope.types = [
             { value : "HDB", text: "HDB" },
             { value : "LND", text: "Landed House" },
@@ -17,6 +20,11 @@ e2eApp.controller(
         $scope.showStatus = function() {
             var selected = $filter('filter')($scope.types , { value : $scope.property.type });
             return ($scope.property.type && selected.length) ? selected[0].text : 'Not set';
+        };
+
+        $scope.removeImage = function(imagePosition) {
+            $scope.slides.splice(imagePosition, 1);
+            $scope.property.asset.images.splice(imagePosition, 1);
         };
 
         $scope.property.$promise.then(function(){
@@ -39,7 +47,6 @@ e2eApp.controller(
         });
 
         $scope.uploader = new FileUploader({
-
             url: apiUrl + '/api/properties/' + $stateParams.id + '/images.json',
             method : 'POST',
             autoUpload : true
@@ -63,10 +70,30 @@ e2eApp.controller(
         };
 
         $scope.save = function() {
-            console.log("I am in");
+            $scope.saving = true;
             $scope.property.$promise.then(function(){
-                PropertyService.save($scope.property);
+                PropertyService.save($scope);
             });
+        };
+
+        $scope.publish = function(flag) {
+            $scope.setPublishing = true;
+            $scope.property.$promise.then(function(){
+                $scope.property.published = flag;
+                PropertyService.save($scope);
+            });
+        };
+
+        $scope.setRemovable = function(index){
+            $scope.mouseOn = index;
+        };
+
+        $scope.unsetRemovable = function(index){
+            $scope.mouseOn = -1;
+        };
+
+        $scope.isRemoveable = function (index) {
+            return $scope.mouseOn == index;
         }
 
     }]);
