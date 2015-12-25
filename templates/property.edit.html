@@ -71,17 +71,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <h4><b>Property Address</b></h4>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <b><i class="fa fa-university"></i><span editable-text="property.name"  onAfterSave="save();"> {{ property.name || 'Sample Name' }} </span></b>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <small><i class="fa fa-send"></i> <span editable-text="property.address"  onAfterSave="save();">{{ property.address || 'Sample Address'  }} </span></small><br>
-                                        <small><i class="fa fa-map-marker"></i> <span editable-text="property.zip" onAfterSave="getLatLan();">{{ property.zip || 'Sample Zip' }} </span></small>
-                                    </li>
-                                </ul>
+                            <div class="col-md-10">
+                                    <p><span editable-text="property.name"  onaftersave="save()"> {{ property.name || 'Sample Name' }} </span></b></p>
+                                    <small><i class="fa fa-send"></i> <span editable-text="property.address"  onAfterSave="save();">{{ property.address || 'Sample Address'  }} </span></small><br>
+                                    <small><i class="fa fa-map-marker"></i> <span editable-text="property.zip" onAfterSave="getLatLan();">{{ property.zip || 'Sample Zip' }} </span></small>
+                            </div>
+                            <div class="col-md-2">
+                                <p class="property-type">
+                                    <img ng-src="/images/icons/{{ property.type | lowercase }}.png"/>
+                                </p>
                             </div>
                         </div>
                         <br>
@@ -91,7 +89,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Price:</b></span>
-                                        <span class="qty pull-right" editable-text="property.price">{{ property.price || '2,100' }}</span>
+                                        <span class="qty pull-right" editable-text="property.price" onaftersave="save()">{{ property.price || '2,100' }}</span>
                                     </li>
                                     <li class="list-group-item">
                                         <span><b>Price psf:</b></span>
@@ -103,7 +101,7 @@
                               <h4><b>Property Type</b></h4>
                                     <li class="list-group-item">
                                         <span><b>Property type:</b></span>
-                                        <span class="qty pull-right" editable-select="property.type" e-ng-options="s.value as s.text for s in types">
+                                        <span class="qty pull-right" editable-select="property.type" onaftersave="setProperyTypeImage()" e-ng-options="s.value as s.text for s in types">
                                             {{ showStatus() }}
                                         </span>
                                     </li>

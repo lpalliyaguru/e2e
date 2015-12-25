@@ -563,10 +563,6 @@ fieldset[disabled] .btn-submit.active {
     float: left;
     margin-right: 10px;
 }
-.image-upload {
-    height: 100px;
-    overflow-x:scroll;
-}
 
 /**
   MEDIA QUERIES - CAROUSEL TESTIMONIAL

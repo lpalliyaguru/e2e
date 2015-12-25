@@ -108,6 +108,7 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .img-wrap:hover .close {
     opacity: 1;
 }
+.property-type { padding: 4px; text-align: center; border:1px solid #eee}
 .property-edit-container-info .carousel-navigator .thumbnail-image{padding: 10px;}
 .property-edit-container-info .carousel-navigator .thumbnail-image.highlight{    background-color: #E4E1E1;}
 .property-edit-container-info .carousel-navigator .thumbnail-image img{ height: 60px;  width: 90px;}
