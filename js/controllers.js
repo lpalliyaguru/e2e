@@ -10,12 +10,20 @@ e2eApp.controller(
         $scope.uploading = false;
         $scope.mouseOn = -1;
         $scope.saving = false;
+        $scope.markers = [];
         $scope.setPublishing = false;
         $scope.types = [
             { value : "HDB", text: "HDB" },
             { value : "LND", text: "Landed House" },
             { value : "CND", text: "Condo" }
         ];
+
+        $scope.map = {
+            center: { latitude: 1.434832, longitude: 103.796258 },
+            zoom: 15,
+            control: {},
+            options: {}
+        };
 
         $scope.showStatus = function() {
             var selected = $filter('filter')($scope.types , { value : $scope.property.type });
@@ -38,7 +46,6 @@ e2eApp.controller(
             }
 
             $scope.removeRandomSlide = function (image) {
-                //$scope.slides.shift();
                  $scope.slides.splice(image);
             };
 
@@ -52,17 +59,30 @@ e2eApp.controller(
             autoUpload : true
         });
 
-        //get Latitude & Longitude
-        $scope.getLatLan = function($http){
-            console.log($scope.property.zip);
-            Geocode.getInformation($scope.property.zip).
-                success(function(data){
-                    console.log(data.results[0].geometry.location)
-                }).
-                error(function(data){
-                    alert("Error");
+        $scope.getLatLng = function(){
+            geocoder = new google.maps.Geocoder();
+            var bound = new google.maps.LatLngBounds();
+            geocoder.geocode({ 'address' : $scope.property.zip },
+                function (results, status){
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var coords = { latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng() };
+                        var marker = {
+                            id: 0,
+                            hashId : 'xxxassd',
+                            coords: coords,
+                            options: {
+                                name: $scope.property.name,
+                                cover_image : '/images/properties/1.jpg'//prop.cover_image
+                            },
+                            show : false
+                        };
+                        $scope.markers.push(marker);
+                        bound.extend( new google.maps.LatLng(coords.latitude, coords.longitude));
+                        bound.zoom;
+                        $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
+                        $scope.map.control.refresh(coords);
+                    }
                 });
-          //PropertyService.save($scope.property);
         };
 
         $scope.save = function(){
