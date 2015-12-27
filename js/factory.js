@@ -1,3 +1,19 @@
+e2eApp.factory('User', function($resource){
+    return $resource(apiUrl + '/api/users/:username/:action',
+        {
+            username: '@username'
+        },
+        {
+            'search': {
+                method: 'GET',
+                params: {
+                    action: 'search',
+                    query: '@query'
+                }
+            }
+        });
+});
+
 e2eApp.factory('Place', function($resource){
     return $resource(apiUrl + '/api/places/:id/:action',
         {

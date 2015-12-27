@@ -12,9 +12,7 @@ e2eApp.service('PlaceService', function($q, Place){
                         "id" : place.id,
                         "text" : place.name
                     });
-
                 });
-
             });
             return deferred.promise;
         }
@@ -40,6 +38,14 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
                 }
             );
         },
+        create: function () {
+            var property = {
+              name : 'Sample Name'
+            };
+            return Property.save(property, function(d){
+                console.log('saved property', d);
+            });
+        },
         save: function($scope){
             return Property.update({id: $scope.property.id}, $scope.property, function (d) {
                 $scope.saving = false;
@@ -55,6 +61,17 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
     return self;
 });
 
+e2eApp.service('UserService', function($q, User){
+
+    var self = {
+        get : function(username){
+            return User.get({
+                "username" : username
+            });
+        }
+    }
+    return self;
+});
 
 e2eApp.service('HelperService', function(){
     var parts = [];

@@ -74,7 +74,7 @@ e2eApp.controller(
                         $scope.addMarkerToMap(coords);
                     }
                     if(status != google.maps.GeocoderStatus.OK || results.length < 1) {
-                        toastr.error('We cannot find the place you entered. Please try again');
+                        toastr.warning('We cannot find the place you entered. Please try again');
                     }
                 });
         };
@@ -167,11 +167,14 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
 
 }]);
 
-e2eApp.controller("HomeController", function ($scope, $q, PlaceService, $state) {
+e2eApp.controller("HomeController",
+    ['$scope', '$q', 'PlaceService', '$state', 'UserService', 'PropertyService',
+    function ($scope, $q, PlaceService, $state, UserService, PropertyService) {
 
     $scope.places = [];
     $scope.sale = false;
     $scope.rent = false;
+    $scope.checkingPropertyExist = false;
 
     $scope.toggle = function(value){
         if(value == 'sale') {
@@ -203,11 +206,33 @@ e2eApp.controller("HomeController", function ($scope, $q, PlaceService, $state) 
         });
 
         var query = {'places': placeids.join(','), 'rent' : $scope.rent, 'sale' : $scope.sale};
+        $state.go('search', query, {location: true});
+    };
 
-        $state.go('search', query, {location: true})
+    $scope.checkEditableProperty = function()
+    {
 
+        $scope.checkingPropertyExist = true;
+
+        $scope.user = UserService.get('lpalliyaguru');
+        $scope.user.$promise.then(function () {
+            $scope.checkingPropertyExist = false;
+            //here need to check how many incomplete postings does user pocesses.
+            if($scope.user.properties.length == 0) {
+                $scope.createPosting();
+            }
+        });
     }
-});
+
+    $scope.createPosting = function (){
+        $scope.property = PropertyService.create();
+        var id =  $scope.property.id
+        $scope.property.$promise.then(function(){
+            $state.go('propertyEdit', { "id" :  $scope.property.id }, {location: true});
+        });
+    };
+
+}]);
 
 e2eApp.controller(
     "SearchController",
