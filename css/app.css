@@ -113,3 +113,9 @@ body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-rep
 .property-edit-container-info .carousel-navigator .thumbnail-image.highlight{    background-color: #E4E1E1;}
 .property-edit-container-info .carousel-navigator .thumbnail-image img{ height: 60px;  width: 90px;}
 .property-edit-container-info .carousel-navigator .thumbnail-image .remove-image{display:block!important;position: relative;top: -10px;float: right;margin-right: -10px; font-size: 12px;color: #9A9595;}
+
+.property-container-map {}
+.property-container-map .property-container-map-wrapper {}
+.property-container-map .property-container-map-wrapper .map-wrapper { height: 300px}
+.property-container-map .property-container-map-wrapper .map-wrapper .angular-google-map-container {height: 300px!important;}
+

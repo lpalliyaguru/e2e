@@ -22,7 +22,7 @@ e2eApp.service('PlaceService', function($q, Place){
     return self;
 });
 
-e2eApp.service('PropertyService', function($q, Property){
+e2eApp.service('PropertyService', function($q, Property, toastr){
     var self =  {
         props: [],
         get: function (id) {
@@ -41,11 +41,15 @@ e2eApp.service('PropertyService', function($q, Property){
             );
         },
         save: function($scope){
-            console.log( $scope.property);
-                return Property.update({id: $scope.property.id}, $scope.property, function () {
-                    $scope.saving = false;
-                    $scope.setPublishing = false;
-                });
+            return Property.update({id: $scope.property.id}, $scope.property, function (d) {
+                $scope.saving = false;
+                $scope.setPublishing = false;
+                toastr.success('Property posting updated');
+            }, function() {
+                $scope.saving = false;
+                $scope.setPublishing = false;
+                toastr.error('Something went wrong. Please try again');
+            });
         }
     };
     return self;

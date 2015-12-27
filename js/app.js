@@ -6,7 +6,8 @@ var e2eApp = angular.module('e2e',[
     'ui.bootstrap',
     'angularFileUpload',
     'xeditable',
-    'angular-ladda'
+    'angular-ladda',
+    'toastr'
 ]);
     /*.directive('loading', function () {
         return {
@@ -28,7 +29,7 @@ e2eApp.run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider){
+e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider, toastrConfig){
 
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
@@ -37,6 +38,17 @@ e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
     });
     laddaProvider.setOption({
         style: 'expand-left'
+    });
+    angular.extend(toastrConfig, {
+        autoDismiss: false,
+        containerId: 'toast-container',
+        maxOpened: 0,
+        newestOnTop: true,
+        closeButton: true,
+        positionClass: 'toast-top-right',
+        preventDuplicates: false,
+        preventOpenDuplicates: false,
+        target: 'body'
     });
 
     $stateProvider

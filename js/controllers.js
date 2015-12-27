@@ -3,7 +3,7 @@ e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
 
 e2eApp.controller(
     'PropertyEditController',
-    ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', 'Geocode', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper, Geocode) {
+    ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', 'Geocode','toastr', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper, Geocode, toastr) {
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
@@ -50,6 +50,11 @@ e2eApp.controller(
             };
 
             Helper.manageUploader($scope);
+
+            if($scope.property.location.coordinates) {
+                $scope.addMarkerToMap({ latitude : $scope.property.location.coordinates[1], longitude:$scope.property.location.coordinates[0] });
+            }
+
             $scope.loading = true ;
         });
 
@@ -66,28 +71,31 @@ e2eApp.controller(
                 function (results, status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         var coords = { latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng() };
-                        var marker = {
-                            id: 0,
-                            hashId : 'xxxassd',
-                            coords: coords,
-                            options: {
-                                name: $scope.property.name,
-                                cover_image : '/images/properties/1.jpg'//prop.cover_image
-                            },
-                            show : false
-                        };
-                        $scope.markers.push(marker);
-                        bound.extend( new google.maps.LatLng(coords.latitude, coords.longitude));
-                        bound.zoom;
-                        $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
-                        $scope.map.control.refresh(coords);
+                        $scope.addMarkerToMap(coords);
                     }
                 });
         };
 
-        $scope.save = function(){
-            PropertyService.save($scope.property);
-        };
+        $scope.addMarkerToMap = function(coords)
+        {
+            var bound = new google.maps.LatLngBounds();
+            var marker = {
+                id: 0,
+                hashId : 'PROPERTYA',
+                coords: coords,
+                options: {
+                    name: $scope.property.name,
+                    cover_image : '/images/properties/1.jpg'//prop.cover_image
+                },
+                show : false
+            };
+            $scope.markers.push(marker);
+            bound.extend( new google.maps.LatLng(coords.latitude, coords.longitude));
+            bound.zoom;
+            $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
+            $scope.map.control.refresh(coords);
+            $scope.property.location.coordinates = [coords.longitude, coords.latitude]
+        }
 
         $scope.save = function() {
             $scope.saving = true;
