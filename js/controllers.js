@@ -67,13 +67,28 @@ e2eApp.controller(
         $scope.getLatLng = function(){
             geocoder = new google.maps.Geocoder();
             var bound = new google.maps.LatLngBounds();
-            geocoder.geocode({ 'address' : $scope.property.zip },
+            geocoder.geocode({ 'address' : $scope.getAddressPrepared() },
                 function (results, status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         var coords = { latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng() };
                         $scope.addMarkerToMap(coords);
                     }
+                    if(status != google.maps.GeocoderStatus.OK || results.length < 1) {
+                        toastr.error('We cannot find the place you entered. Please try again');
+                    }
                 });
+        };
+
+        $scope.getAddressPrepared = function () {
+            var address = [];
+
+            if ($scope.property.address != '') {
+                address.push($scope.property.address);
+            }
+            if($scope.property.zip) {
+                address.push($scope.property.zip);
+            }
+            return address.join(', ');
         };
 
         $scope.addMarkerToMap = function(coords)
