@@ -31,14 +31,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4><b>Property Address</b></h4>
                                 <h4><b><i class="fa fa-university"></i> {{ property.name }}</b></h4>
                                 <small><i class="fa fa-send"></i> {{ property.address }}</small>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4><b>Property Type</b></h4>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Bedrooms:</b></span>
@@ -60,7 +58,6 @@
 
                             </div>
                             <div class="col-md-6">
-                                <h4><b>Property Information</b></h4>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Year:</b></span>
@@ -97,8 +94,35 @@
                     </div>
                     <div class="panel-body property-container-map-wrapper">
                         <div class="row">
-                            <div class="col-md-12">
-                                <img class="map-image" src="../images/stuff/google-map-LKFH-201226e4de.jpg" />
+                            <div class="col-md-12 map-wrapper">
+                                <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" control="map.control" refresh='refreshMap'>
+                                    <ui-gmap-markers models="markers"
+                                                     coords="'coords'"
+                                                     icon="'icon'"
+                                                     labelContent="'title'"
+                                                     options="'options'">
+                                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                                <ui-gmap-windows options="windowOptions" show="show" closeClick="closeClick()">
+                                                    <div ng-non-bindable class="marker-wrapper">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <img class="img-responsive " src="{{ property.assets.cover_image }}" width="32" />
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <p><strong>{{options.name}}</strong></p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </ui-gmap-windows>
+
+                                            </ui-gmap-marker>
+                                        </ui-gmap-marker>
+
+                                    </ui-gmap-markers>
+
+                                </ui-gmap-google-map>
                             </div>
                         </div>
                         <div class="row property-container-seller">

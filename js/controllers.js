@@ -52,7 +52,7 @@ e2eApp.controller(
             Helper.manageUploader($scope);
 
             if($scope.property.location.coordinates) {
-                $scope.addMarkerToMap({ latitude : $scope.property.location.coordinates[1], longitude:$scope.property.location.coordinates[0] });
+                PropertyService.addMarkerToMap($scope, { latitude : $scope.property.location.coordinates[1], longitude:$scope.property.location.coordinates[0] });
             }
 
             $scope.loading = true ;
@@ -71,7 +71,8 @@ e2eApp.controller(
                 function (results, status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         var coords = { latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng() };
-                        $scope.addMarkerToMap(coords);
+                        PropertyService.addMarkerToMap($scope, coords);
+                        $scope.property.location.coordinates = [coords.longitude, coords.latitude]
                     }
                     if(status != google.maps.GeocoderStatus.OK || results.length < 1) {
                         toastr.warning('We cannot find the place you entered. Please try again');
@@ -90,27 +91,6 @@ e2eApp.controller(
             }
             return address.join(', ');
         };
-
-        $scope.addMarkerToMap = function(coords)
-        {
-            var bound = new google.maps.LatLngBounds();
-            var marker = {
-                id: 0,
-                hashId : 'PROPERTYA',
-                coords: coords,
-                options: {
-                    name: $scope.property.name,
-                    cover_image : '/images/properties/1.jpg'//prop.cover_image
-                },
-                show : false
-            };
-            $scope.markers.push(marker);
-            bound.extend( new google.maps.LatLng(coords.latitude, coords.longitude));
-            bound.zoom;
-            $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
-            $scope.map.control.refresh(coords);
-            $scope.property.location.coordinates = [coords.longitude, coords.latitude]
-        }
 
         $scope.save = function() {
             $scope.saving = true;
@@ -146,24 +126,28 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
     var id = $stateParams.id;
     $scope.myInterval = -1;
     $scope.noWrapSlides = false;
-    var slides = $scope.slides = [];
-
+    $scope.markers = [], $scope.slides = [];
+    $scope.map = {
+        center: { latitude: 1.434832, longitude: 103.796258 },
+        zoom: 15,
+        control: {},
+        options: {}
+    };
     $scope.property = PropertyService.get(id);
+    $scope.property.$promise.then(function(){
+        angular.forEach($scope.property.asset.images, function(image){
+            $scope.propertyHasImages = true;
+            $scope.slides.push({ image : image, text : ''});
+        });
 
-    $scope.slides = [
-        {
-            image : 'http://sg2-cdn.pgimgs.com/listing/13177735/UPHO.60324451.V550.jpg',
-            text:''
-        },
-        {
-            image: 'http://sg2-cdn.pgimgs.com/property/1411/PPHO.30070994.V550.jpg',
-            text: ''
-        },
-        {
-            image: 'http://sg2-cdn.pgimgs.com/property/1411/PPHO.30070998.V550.jpg',
-            text : ''
+        if(!$scope.propertyHasImages) {
+            $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
         }
-    ];
+        console.log();
+        if($scope.property.location.coordinates) {
+            PropertyService.addMarkerToMap($scope, { latitude : $scope.property.location.coordinates[1], longitude:$scope.property.location.coordinates[0] });
+        }
+    });
 
 }]);
 

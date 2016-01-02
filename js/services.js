@@ -56,6 +56,26 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
                 $scope.setPublishing = false;
                 toastr.error('Something went wrong. Please try again');
             });
+        },
+        addMarkerToMap : function($scope, coords){
+
+            var bound = new google.maps.LatLngBounds();
+            var marker = {
+                id: 1,
+                hashId : 'PROPERTYA123',
+                coords: coords,
+                options: {
+                    name: $scope.property.name,
+                    cover_image : '/images/properties/1.jpg'//prop.cover_image
+                },
+                show : false
+            };
+            $scope.markers.push(marker);
+            bound.extend( new google.maps.LatLng(coords.latitude, coords.longitude));
+            bound.zoom;
+            $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
+            $scope.map.control.refresh(coords);
+
         }
     };
     return self;
