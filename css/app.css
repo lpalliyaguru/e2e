@@ -1,4 +1,4 @@
-body{background-image:url("/images/bg/bg-latest.jpg"); background-repeat: no-repeat;background-position: right top; background-attachment: fixed;background-size: cover;}
+body{background-color: rgba(204, 204, 204, 0.21);; background-repeat: no-repeat;background-position: right top; background-attachment: fixed;background-size: cover;}
 .no-link a,.no-link a:hover{text-decoration: none; color:#fff!important;}
 .survey-header{background-color: #65216C; position: fixed; border-bottom: 1px solid #915198; padding: 10px 0}
 .survey-container{padding-top:130px }
