@@ -78,9 +78,20 @@ e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
             templateUrl: 'templates/property.edit.html',
             controller: 'PropertyEditController'
         })
+        .state('login', {
+            url : '/login',
+            templateUrl : 'templates/login.html',
+            controller: 'LoginController'
+        })
+        .state('register',{
+            url : '/register',
+            templateUrl : 'templates/register.html',
+            controller: 'RegisterController'
+        })
+
     ;
 
-        $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 });
 
 

@@ -1,0 +1,65 @@
+<section id="header" class="container-fluid main-header">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="panel-body">
+                <form role="form"  ng-submit="register()">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column ">
+                            <h1 class="text-center">
+                                <img src="/images/logos/final-logo.png" width="150" />
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" ng-model="user.username" class="form-control" placeholder="Username" tabindex="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" ng-model="user.firstName" class="form-control" placeholder="First Name" tabindex="1">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" ng-model="user.lastName" class="form-control " placeholder="Last Name" tabindex="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" ng-model="user.email" class="form-control " placeholder="Email Address" tabindex="4">
+                    </div>
+                    <div class="form-group">
+                        I am a
+                        <label class="radio-inline">
+                            <input type="radio" name="type" id="inlineRadio1" ng-model="user.type" value="landlord"> Landlord
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" id="inlineRadio2" ng-model="user.type" value="tenant">   Tenant
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" ng-model="user.plainPassword.first" id="password" class="form-control " placeholder="Password" tabindex="5">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" ng-model="user.plainPassword.second" class="form-control " placeholder="Confirm Password" tabindex="6">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" ladda="registering" class="btn btn-success">Sign Up</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</section>
