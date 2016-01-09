@@ -2,6 +2,20 @@ e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
 }]);
 
 e2eApp.controller(
+    'RegisterController',
+    ['$scope','UserService',
+    function($scope, UserService){
+        $scope.user = {};
+        $scope.registering = false;
+        $scope.register = function(){
+            $scope.registering = true;
+            UserService.register($scope);
+        }
+
+    }]
+);
+
+e2eApp.controller(
     'PropertyEditController',
     ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', 'Geocode','toastr', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper, Geocode, toastr) {
         $scope.propertyHasImages = false;

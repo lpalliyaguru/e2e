@@ -81,13 +81,33 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
     return self;
 });
 
-e2eApp.service('UserService', function($q, User){
+e2eApp.service('UserService', function($q, User, $http, toastr){
 
     var self = {
         get : function(username){
             return User.get({
                 "username" : username
             });
+        },
+        register: function($scope){
+
+            $http
+                .post(apiUrl + '/api/register', $scope.user)
+                .success(function(data){
+                    if(data.success) {
+                        toastr.success('Registered!');
+                    }
+                    else {
+                        toastr.error('Register Error! Please fill the form correctly');
+                    }
+
+                    $scope.registering = false
+                })
+                .error(function(){
+                    toastr.success('Register Error!');
+                    $scope.registering = false
+                });
+            ;
         }
     }
     return self;
