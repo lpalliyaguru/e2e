@@ -26,6 +26,14 @@ e2eApp.factory('Place', function($resource){
                     action: 'search',
                     query: '@query'
                 }
+            },
+            'getPlaces':{
+                method: 'GET',
+                params:{
+                    action: 'nearby',
+                    longitude: '@longitude',
+                    latitude: '@latitude'
+                }
             }
         });
 });

@@ -3,7 +3,7 @@ e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
 
 e2eApp.controller(
     'PropertyEditController',
-    ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', 'Geocode','toastr', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper, Geocode, toastr) {
+    ['$scope', '$stateParams', '$filter', 'PropertyService','PlaceService', 'FileUploader', 'Helper', 'Geocode','toastr', function ($scope, $stateParams, $filter, PropertyService, PlaceService,  FileUploader, Helper, Geocode, toastr) {
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
@@ -24,6 +24,9 @@ e2eApp.controller(
             control: {},
             options: {}
         };
+
+        $scope.nearbyPlaces = [];
+        $scope.IsHidden = true;
 
         $scope.showStatus = function() {
             var selected = $filter('filter')($scope.types , { value : $scope.property.type });
@@ -71,8 +74,21 @@ e2eApp.controller(
                 function (results, status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         var coords = { latitude: results[0].geometry.location.lat(), longitude: results[0].geometry.location.lng() };
+
                         PropertyService.addMarkerToMap($scope, coords);
-                        $scope.property.location.coordinates = [coords.longitude, coords.latitude]
+                        $scope.property.location.coordinates = [coords.longitude, coords.latitude];
+                        //get nearby places
+                        $scope.places = PlaceService.getPlaces(coords);
+                        $scope.IsHidden = false;
+                        $scope.places.$promise.then(function(){
+                            angular.forEach($scope.places.places, function(place){
+                                $scope.nearbyPlaces.push({
+                                    latitude  : place.geometry.location.lat,
+                                    longitude : place.geometry.location.lng,
+                                    name : place.name,
+                                });
+                            });
+                        });
                     }
                     if(status != google.maps.GeocoderStatus.OK || results.length < 1) {
                         toastr.warning('We cannot find the place you entered. Please try again');
@@ -143,7 +159,7 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
         if(!$scope.propertyHasImages) {
             $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
         }
-        console.log();
+
         if($scope.property.location.coordinates) {
             PropertyService.addMarkerToMap($scope, { latitude : $scope.property.location.coordinates[1], longitude:$scope.property.location.coordinates[0] });
         }

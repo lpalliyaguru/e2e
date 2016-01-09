@@ -15,6 +15,10 @@ e2eApp.service('PlaceService', function($q, Place){
                 });
             });
             return deferred.promise;
+        },
+        getPlaces : function(coords){
+            return Place.getPlaces({longitude: coords.longitude, latitude: coords.latitude}, function (nearbyPlaces) {
+            });
         }
     };
     return self;
@@ -58,7 +62,6 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
             });
         },
         addMarkerToMap : function($scope, coords){
-
             var bound = new google.maps.LatLngBounds();
             var marker = {
                 id: 1,
@@ -75,7 +78,6 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
             bound.zoom;
             $scope.map.center =  { latitude: bound.getCenter().lat(), longitude: bound.getCenter().lng() };//bound.getCenter();
             $scope.map.control.refresh(coords);
-
         }
     };
     return self;
