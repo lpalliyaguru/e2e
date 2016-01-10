@@ -7,7 +7,9 @@ var e2eApp = angular.module('e2e',[
     'angularFileUpload',
     'xeditable',
     'angular-ladda',
-    'toastr'
+    'toastr',
+    'ngStorage',
+    'ui.navbar'
 ]);
     /*.directive('loading', function () {
         return {
@@ -29,16 +31,19 @@ e2eApp.run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider, toastrConfig){
+e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider, toastrConfig, $httpProvider){
 
+    //$httpProvider.defaults.headers.common['Authorization'] = 'Basic eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlMmUucHJvcGVydHkiLCJpYXQiOjE0NTIzNDc5ODEsIm5hbWUiOiJNYW5vaiBsYXNhbnRoYSIsInVzZXJuYW1lIjoibWFub2oiLCJ0eXBlIjoiYSJ9.TcYQP1MY6lSkwdAc40W10_Pg_CvMtA6Wyfb7zLezplU';
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
+
     laddaProvider.setOption({
         style: 'expand-left'
     });
+
     angular.extend(toastrConfig, {
         autoDismiss: false,
         containerId: 'toast-container',
@@ -61,7 +66,6 @@ e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
             url:"/search?places&rent&sale",
             templateUrl: 'templates/search.html',
             controller: 'SearchController'
-
         })
         .state('property', {
             url:"/property/v/:id",
@@ -88,7 +92,6 @@ e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
             templateUrl : 'templates/register.html',
             controller: 'RegisterController'
         })
-
     ;
 
     $urlRouterProvider.otherwise('/');

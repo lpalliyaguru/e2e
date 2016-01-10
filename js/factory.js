@@ -18,6 +18,7 @@ e2eApp.factory('Place', function($resource){
                     action: 'search',
                     query: '@query'
                 }
+
             }
         });
 });

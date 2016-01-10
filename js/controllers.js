@@ -15,6 +15,65 @@ e2eApp.controller(
     }]
 );
 
+e2eApp.controller('NavigationController', function($scope, $rootScope, $sessionStorage) {
+    $scope.$storage = $sessionStorage;
+    $scope.tree = [
+        {
+            name: "Profile",
+            link: "/#/profile",
+        },
+        {
+            name: "Logout",
+            link: "/#/logout",
+        }
+    ];
+    /*$scope.tree = [{
+        name: "States",
+        link: "#",
+        subtree: [{
+            name: "state 1",
+            link: "state1",
+            subtree: [{name: "state 1",
+                link: "state1"}]
+        }, {
+            name: "state 2",
+            link: "state2"
+        }]
+    }, {
+        name: "No states",
+        link: "#",
+        subtree: [{
+            name: "no state connected",
+            link: "#"
+        }]
+    }, {
+        name: "divider",
+        link: "#"
+
+    }, {
+        name: "State has not been set up",
+        link: "#"
+    }, {
+        name: "divider",
+        link: "#"
+    }, {
+        name: "Here again no state set up",
+        link: "#"
+    }];*/
+});
+e2eApp.controller(
+    'LoginController',
+    ['$scope', 'UserService', '$sessionStorage',
+    function ($scope, UserService, $sessionStorage) {
+        $scope.logging  = false;
+        $scope.$storage = $sessionStorage;
+        $scope.login = function()
+        {
+            UserService.login($scope);
+        }
+    }]
+);
+
 e2eApp.controller(
     'PropertyEditController',
     ['$scope', '$stateParams', '$filter', 'PropertyService','FileUploader', 'Helper', 'Geocode','toastr', function ($scope, $stateParams, $filter, PropertyService, FileUploader, Helper, Geocode, toastr) {

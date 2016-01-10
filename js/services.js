@@ -108,6 +108,20 @@ e2eApp.service('UserService', function($q, User, $http, toastr){
                     $scope.registering = false
                 });
             ;
+        },
+        login : function($scope) {
+            $http
+                .post(apiUrl + '/api/login',{username: $scope.username, password: $scope.password})
+                .success(function (data) {
+                    $scope.$storage.token = data.access_token;
+                    $scope.$storage.user  = data.user;
+                    toastr.success('Logged in!');
+                    $scope.logging = false;
+                })
+                .error(function (error) {
+                    $scope.logging = false;
+                })
+            ;
         }
     }
     return self;
