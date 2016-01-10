@@ -151,6 +151,17 @@
                                 <p editable-textarea="property.description" e-rows="7" e-cols="40">{{ property.description }}</p>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div ng-hide = "IsHidden">
+                                <h3><b>Near By Property</b></h3>
+                                    <p>We found the following places near by your property. <input type="checkbox" name="isNearBy"> Would you like to add in your property locations?</p>
+                                    <ul class="list-group" ng-repeat="nearbyPlace in nearbyPlaces">
+                                        <li class="list-group-item">{{nearbyPlace.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
