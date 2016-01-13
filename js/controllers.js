@@ -252,14 +252,14 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
 }]);
 
 e2eApp.controller("HomeController",
-    ['$scope', '$q', 'PlaceService', '$state', 'UserService', 'PropertyService',
-    function ($scope, $q, PlaceService, $state, UserService, PropertyService) {
+    ['$scope', '$q', 'PlaceService', '$state', 'UserService', 'PropertyService', '$localStorage',
+    function ($scope, $q, PlaceService, $state, UserService, PropertyService, $localStorage) {
 
     $scope.places = [];
     $scope.sale = false;
     $scope.rent = false;
     $scope.checkingPropertyExist = false;
-
+    $scope.$storage = $localStorage
     $scope.toggle = function(value){
         if(value == 'sale') {
             $scope['sale'] = !$scope['sale'];
@@ -296,17 +296,22 @@ e2eApp.controller("HomeController",
     $scope.checkEditableProperty = function()
     {
 
-        $scope.checkingPropertyExist = true;
+        if($scope.$storage.user) {
+            $scope.checkingPropertyExist = true;
+            $scope.user = UserService.get($scope.$storage.user.id);
+            $scope.user.$promise.then(function () {
+                $scope.checkingPropertyExist = false;
+                //here need to check how many incomplete postings does user pocesses.
 
-        $scope.user = UserService.get('lpalliyaguru');
-        $scope.user.$promise.then(function () {
-            $scope.checkingPropertyExist = false;
-            //here need to check how many incomplete postings does user pocesses.
+                if($scope.user.properties.length == 0) {
+                    $scope.createPosting();
+                }
+            });
+        }
+        else {
+            $state.go('login');
+        }
 
-            if($scope.user.properties.length == 0) {
-                $scope.createPosting();
-            }
-        });
     }
 
     $scope.createPosting = function (){
