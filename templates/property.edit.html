@@ -85,7 +85,14 @@
                         <br>
                         <div class="row">
                             <div class="col-md-6">
-                                <h4><b>Price Information</b></h4>
+                                <label>
+                                    <input type="radio" ng-model="property.saleType" value="rent" />
+                                    <div class="custom-radio"></div> Rent
+                                </label>
+                                <label>
+                                    <input type="radio" ng-model="property.saleType" value="sale" />
+                                    <div class="custom-radio"></div> Sale
+                                </label>
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <span><b>Price:</b></span>
@@ -98,6 +105,7 @@
                                 </ul>
                             </div>
                           <div class="col-md-6">
+
                               <h4><b>Property Type</b></h4>
                                     <li class="list-group-item">
                                         <span><b>Property type:</b></span>
