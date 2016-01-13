@@ -302,7 +302,6 @@ e2eApp.controller("HomeController",
             $scope.user.$promise.then(function () {
                 $scope.checkingPropertyExist = false;
                 //here need to check how many incomplete postings does user pocesses.
-
                 if($scope.user.properties.length == 0) {
                     $scope.createPosting();
                 }

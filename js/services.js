@@ -114,7 +114,7 @@ e2eApp.service('UserService', function($q, User, $http, toastr, $state){
         },
         login : function($scope) {
             $http
-                .post(apiUrl + '/api/login',{username: $scope.username, password: $scope.password})
+                .post(apiUrl + '/api/login',{email: $scope.email, password: $scope.password})
                 .success(function (data) {
                     $scope.$storage.token = data.access_token;
                     $scope.$storage.user  = data.user;
