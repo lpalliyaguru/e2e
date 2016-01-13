@@ -15,16 +15,16 @@ e2eApp.controller(
     }]
 );
 
-e2eApp.controller('NavigationController', function($scope, $rootScope, $sessionStorage) {
-    $scope.$storage = $sessionStorage;
+e2eApp.controller('NavigationController', function($scope, $rootScope, $localStorage) {
+    $scope.$storage = $localStorage;
     $scope.tree = [
         {
             name: "Profile",
-            link: "/#/profile",
+            link: "profile",
         },
         {
             name: "Logout",
-            link: "/#/logout",
+            link: "logout",
         }
     ];
     /*$scope.tree = [{
@@ -62,13 +62,23 @@ e2eApp.controller('NavigationController', function($scope, $rootScope, $sessionS
     }];*/
 });
 e2eApp.controller(
+    'LogoutController',
+    ['$scope', 'UserService', '$localStorage', '$state',
+        function ($scope, UserService, $localStorage, $state) {
+            $localStorage.$reset();
+            delete $scope.$storage;
+            $state.go('home');
+        }]
+);
+e2eApp.controller(
     'LoginController',
-    ['$scope', 'UserService', '$sessionStorage',
-    function ($scope, UserService, $sessionStorage) {
+    ['$scope', 'UserService', '$localStorage',
+    function ($scope, UserService, $localStorage) {
         $scope.logging  = false;
-        $scope.$storage = $sessionStorage;
+        $scope.$storage = $localStorage;
         $scope.login = function()
         {
+            $scope.logging  = true;
             UserService.login($scope);
         }
     }]
@@ -291,6 +301,7 @@ e2eApp.controller("HomeController",
         $scope.user.$promise.then(function () {
             $scope.checkingPropertyExist = false;
             //here need to check how many incomplete postings does user pocesses.
+
             if($scope.user.properties.length == 0) {
                 $scope.createPosting();
             }

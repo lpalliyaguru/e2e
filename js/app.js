@@ -31,9 +31,26 @@ e2eApp.run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider, toastrConfig, $httpProvider){
+e2eApp.config(function($httpProvider, $stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, laddaProvider, toastrConfig, $localStorageProvider ){
 
-    //$httpProvider.defaults.headers.common['Authorization'] = 'Basic eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJlMmUucHJvcGVydHkiLCJpYXQiOjE0NTIzNDc5ODEsIm5hbWUiOiJNYW5vaiBsYXNhbnRoYSIsInVzZXJuYW1lIjoibWFub2oiLCJ0eXBlIjoiYSJ9.TcYQP1MY6lSkwdAc40W10_Pg_CvMtA6Wyfb7zLezplU';
+    if($localStorageProvider.$get().token) {
+        $httpProvider.defaults.headers.common['Authentication'] = $localStorageProvider.$get().token.access_token;
+    }
+
+    $httpProvider.interceptors.push(function ($q, toastr) {
+        return {
+            'responseError': function (responseError) {
+                console.log($stateProvider);
+                toastr.error(responseError.statusText)
+                if(responseError.status == 403 || responseError.status == 401) {
+                    //$stateProvider.state().go('login');
+                    location.hash = '#/login';
+                }
+
+            }
+        };
+    });
+
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
         v: '3.20', //defaults to latest 3.X anyhow
@@ -86,6 +103,11 @@ e2eApp.config(function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiPro
             url : '/login',
             templateUrl : 'templates/login.html',
             controller: 'LoginController'
+        })
+        .state('logout', {
+            url : '/logout',
+            templateUrl : 'templates/login.html',
+            controller: 'LogoutController'
         })
         .state('register',{
             url : '/register',

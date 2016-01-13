@@ -83,7 +83,7 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
     return self;
 });
 
-e2eApp.service('UserService', function($q, User, $http, toastr){
+e2eApp.service('UserService', function($q, User, $http, toastr, $state){
 
     var self = {
         get : function(username){
@@ -98,6 +98,7 @@ e2eApp.service('UserService', function($q, User, $http, toastr){
                 .success(function(data){
                     if(data.success) {
                         toastr.success('Registered!');
+                        $state.go('login');
                     }
                     else {
                         toastr.error('Register Error! Please fill the form correctly');
@@ -106,7 +107,7 @@ e2eApp.service('UserService', function($q, User, $http, toastr){
                     $scope.registering = false
                 })
                 .error(function(){
-                    toastr.success('Register Error!');
+                    toastr.error('Register Error!');
                     $scope.registering = false
                 });
             ;
@@ -118,6 +119,7 @@ e2eApp.service('UserService', function($q, User, $http, toastr){
                     $scope.$storage.token = data.access_token;
                     $scope.$storage.user  = data.user;
                     toastr.success('Logged in!');
+                    $state.go('home');
                     $scope.logging = false;
                 })
                 .error(function (error) {
