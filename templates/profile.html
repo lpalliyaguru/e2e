@@ -1,0 +1,58 @@
+<section id="header" class="container main-header">
+    <div class="row">
+        <div class="col-md-12 profile-wrapper">
+            <h2>Profile</h2>
+            <form ng-submit="update()">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-md-3">
+                        <div class="text-center">
+                            <img ng-src="{{ user.profilePic }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <h6>Upload a different photo...</h6>
+                            <input type="file" class=""
+                                type="file"
+                                id="image-uploader"
+                                ng-model="profilePic"
+                                class="text-center center-block well well-sm"
+                                nv-file-select
+                                uploader="uploader">
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" ng-model="user.firstName" class="form-control" placeholder="First Name" tabindex="1">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" ng-model="user.lastName" class="form-control " placeholder="Last Name" tabindex="2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" ng-model="user.email" class="form-control " placeholder="Email Address" tabindex="4">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" ng-model="user.plainPassword.first" id="password" class="form-control " placeholder="Password" tabindex="5">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" ng-model="user.plainPassword.second" class="form-control " placeholder="Confirm Password" tabindex="6">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" ladda="updating" class="btn btn-success"><i class="fa fa-save"></i> Update</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</section>

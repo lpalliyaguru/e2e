@@ -114,6 +114,11 @@ e2eApp.config(function($httpProvider, $stateProvider, $urlRouterProvider, uiGmap
             templateUrl : 'templates/register.html',
             controller: 'RegisterController'
         })
+        .state('profile',{
+            url : '/profile',
+            templateUrl : 'templates/profile.html',
+            controller: 'ProfileController'
+        })
     ;
 
     $urlRouterProvider.otherwise('/');

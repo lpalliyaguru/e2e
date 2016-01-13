@@ -1,5 +1,23 @@
-e2eApp.controller('PropertyAddController', ['$scope', function ($scope) {
-}]);
+e2eApp.controller('ProfileController',
+    ['$scope', '$localStorage', 'Helper', 'FileUploader','UserService',
+    function ($scope, $localStorage, Helper, FileUploader, UserService) {
+        $scope.user = $localStorage.user;
+
+
+        $scope.update = function(){
+            UserService.save($scope);
+        }
+        $scope.uploader = new FileUploader({
+            url: apiUrl + '/api/user/' + $scope.user.id + '/images.json',
+            method : 'POST',
+            headers: {
+                Authentication: $localStorage.token.access_token
+            },
+            autoUpload : true
+        });
+        Helper.manageUploader($scope, 'profile');
+    }]
+);
 
 e2eApp.controller(
     'RegisterController',
@@ -87,7 +105,7 @@ e2eApp.controller(
 
 e2eApp.controller(
     'PropertyEditController',
-    ['$scope', '$stateParams', '$filter', 'PropertyService','PlaceService', 'FileUploader', 'Helper', 'Geocode','toastr', function ($scope, $stateParams, $filter, PropertyService, PlaceService,  FileUploader, Helper, Geocode, toastr) {
+    ['$scope', '$stateParams', '$filter', 'PropertyService','PlaceService', 'FileUploader', 'Helper', 'Geocode','toastr', '$localStorage', function ($scope, $stateParams, $filter, PropertyService, PlaceService,  FileUploader, Helper, Geocode, toastr, $localStorage) {
         $scope.propertyHasImages = false;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
@@ -136,7 +154,7 @@ e2eApp.controller(
                  $scope.slides.splice(image);
             };
 
-            Helper.manageUploader($scope);
+            Helper.manageUploader($scope, 'property');
 
             if($scope.property.location.coordinates) {
                 PropertyService.addMarkerToMap($scope, { latitude : $scope.property.location.coordinates[1], longitude:$scope.property.location.coordinates[0] });
@@ -148,7 +166,10 @@ e2eApp.controller(
         $scope.uploader = new FileUploader({
             url: apiUrl + '/api/properties/' + $stateParams.id + '/images.json',
             method : 'POST',
-            autoUpload : true
+            autoUpload : true,
+            headers: {
+                Authentication: $localStorage.token.access_token
+            },
         });
 
         $scope.getLatLng = function(){

@@ -1,7 +1,12 @@
 e2eApp.factory('User', function($resource){
-    return $resource(apiUrl + '/api/users/:username/:action',
+    return $resource(apiUrl + '/api/user/:id/:action',
         {
-            username: '@username'
+            id : '@id'
+        },
+        {
+            'update': {
+                method : 'PUT'
+            }
         }
         );
 });

@@ -86,9 +86,9 @@ e2eApp.service('PropertyService', function($q, Property, toastr){
 e2eApp.service('UserService', function($q, User, $http, toastr, $state){
 
     var self = {
-        get : function(username){
+        get : function(id){
             return User.get({
-                "username" : username
+                "id" : id
             });
         },
         register: function($scope){
@@ -128,7 +128,16 @@ e2eApp.service('UserService', function($q, User, $http, toastr, $state){
                     $scope.logging = false;
                 })
             ;
-        }
+        },
+        save: function($scope){
+            return User.update({id: $scope.user.id}, $scope.user, function (d) {
+                $scope.updating = false;
+                toastr.success('Profile info updated');
+            }, function() {
+                $scope.updating = false;
+                toastr.error('Something went wrong. Please try again');
+            });
+        },
     }
     return self;
 });

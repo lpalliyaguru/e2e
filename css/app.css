@@ -25,7 +25,7 @@ body{background-color: rgba(204, 204, 204, 0.21);; background-repeat: no-repeat;
 .link-bold-500{font-weight: 500;}
 .hide-element {display: none}
 /* home page styles */
-.main-viewport{padding-top: 60px}
+.main-viewport{/*padding-top: 60px*/}
 #home-search { padding-top: 40px}
 .home-search-wrapper {border: 1px solid #fff; padding:6px}
 #home-search-box {display: none}
@@ -119,3 +119,5 @@ body{background-color: rgba(204, 204, 204, 0.21);; background-repeat: no-repeat;
 .property-container-map .property-container-map-wrapper .map-wrapper { height: 300px}
 .property-container-map .property-container-map-wrapper .map-wrapper .angular-google-map-container {height: 300px!important;}
 
+.profile-wrapper {}
+.profile-wrapper .avatar{height: 150px;width: 150px;}

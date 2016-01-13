@@ -1,13 +1,16 @@
 e2eApp.service('Helper', function($q, Place){
 
     var self = {
-        manageUploader : function($scope){
+        manageUploader : function($scope, page){
             $scope.uploader.onAfterAddingAll = function(addedFileItems) {
-                $scope.uploading = true;
-                console.log('onAfterAddingAll',$scope.uploading);
-                //uploader.uploadAll();
-            };
+                if(page == 'profile') {
+                    $scope.user.profilePic = '/images/stuff/loading.gif'
+                }
+                else {
+                    $scope.uploading = true;
+                }
 
+            };
             /*uploader.onWhenAddingFileFailed = function(item /!*{File|FileLikeObject}*!/, filter, options) {
                 console.info('onWhenAddingFileFailed', item, filter, options);
             };
@@ -34,21 +37,26 @@ e2eApp.service('Helper', function($q, Place){
                 console.info('onCancelItem', fileItem, response, status, headers);
             };*/
             $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-                if(!$scope.propertyHasImages) {
-                    $scope.slides.shift();
+                if(page == 'property') {
+                    if(!$scope.propertyHasImages) {
+                        $scope.slides.shift();
+                    }
+                    $scope.propertyHasImages = true;
+                    $scope.property.asset.images.push(response.image);
+                    $scope.slides.push({
+                        image : response.image,
+                        text : ''
+                    });
                 }
-                $scope.propertyHasImages = true;
-                $scope.property.asset.images.push(response.image);
-                $scope.slides.push({
-                    image : response.image,
-                    text : ''
-                });
+                else  if(page == 'profile') {
+                    $scope.user.profilePic = response.image;
+                }
+
             };
 
             $scope.uploader.onCompleteAll = function(e) {
 
                 $scope.uploading = false;
-                console.log('onCompleteAll',$scope.uploading);
             };
         }
     };
