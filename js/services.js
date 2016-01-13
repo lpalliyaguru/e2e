@@ -118,7 +118,9 @@ e2eApp.service('UserService', function($q, User, $http, toastr, $state){
                 .success(function (data) {
                     $scope.$storage.token = data.access_token;
                     $scope.$storage.user  = data.user;
+                    $http.defaults.headers.common['Authentication'] = $scope.$storage.token.access_token;
                     toastr.success('Logged in!');
+
                     $state.go('home');
                     $scope.logging = false;
                 })

@@ -68,6 +68,7 @@ e2eApp.controller(
             $localStorage.$reset();
             delete $scope.$storage;
             $state.go('home');
+            window.location.reload();
         }]
 );
 e2eApp.controller(
