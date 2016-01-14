@@ -3,10 +3,14 @@
     <div class="container home-header-bar">
         <button class="btn btn-success btn-xs pull-right" ladda="checkingPropertyExist" ng-click="checkEditableProperty()"><i class="fa fa-send-o"></i> post a property</button>
         <div class="row clearfix">
-            <div class="col-md-12 column ">
+            <div class="col-md-5 column col-sm-4 ">
+            </div>
+            <div class="col-md-2 column col-sm-4 col-xs-12">
                 <h1 class="text-center">
-                    <img src="/images/logos/final-logo.png" width="200" />
+                    <img src="/images/logos/final-logo.png" width="150" />
                 </h1>
+            </div>
+            <div class="col-md-5 column col-sm-4">
             </div>
         </div>
     </div><!-- /container  -->
@@ -14,19 +18,32 @@
         <div class="row" >
             <div class="col-md-2">
                 <div class="btn-group pull-right" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default input-lg-50" ng-model="rent" ng-class="{'active': rent}" ng-click="toggle('rent')">Rent</button>
-                    <button type="button" class="btn btn-default input-lg-50" ng-model="sale" ng-class="{'active': sale}" ng-click="toggle('sale')">Sale</button>
+                   <!-- <button type="button" class="btn btn-default input-lg-50" ng-model="rent" ng-class="{'active': rent}" ng-click="toggle('rent')">Rent</button>
+                    <button type="button" class="btn btn-default input-lg-50" ng-model="sale" ng-class="{'active': sale}" ng-click="toggle('sale')">Sale</button>-->
                 </div>
             </div>
-            <div class="col-md-9">
-                <div class='container-fluid' >
+            <div class="col-md-8">
+                <!--<div class='container-fluid' >
                     <tags-input ng-model="places" add-from-autocomplete-only="true">
                         <auto-complete source="loadTags($query)" debounce-delay="200"></auto-complete>
                     </tags-input>
+                </div>-->
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <!--<input type="text" class="form-control input-lg" placeholder="I am looking for a house in .." />-->
+                        <tags-input ng-model="places" add-from-autocomplete-only="true" placeholder="I am looking for a house in ..">
+                            <auto-complete  source="loadTags($query)" debounce-delay="200"></auto-complete>
+                        </tags-input>
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="submit" ng-click="doSearch()">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-1">
-                <button type="submit" class="btn btn-default" ng-click="doSearch()"><i class="fa fa-search"></i></button>
+            <div class="col-md-2">
+               <!-- <button type="submit" class="btn btn-default" ng-click="doSearch()"><i class="fa fa-search"></i></button>-->
             </div>
         </div>
     </div>
