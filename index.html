@@ -75,7 +75,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div ng-if="!$storage.user" class="pull-right nav-links">
+                    <div ng-if="!$storage.user" class="pull-right nav-links collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
                         <a ui-sref="login"> <i class="fa fa-sign-in"></i> Login</a>
                         <a ui-sref="register" class="btn btn-success btn-xs" >Sign Up</a>
                     </div>
