@@ -107,6 +107,7 @@ e2eApp.controller(
     'PropertyEditController',
     ['$scope', '$stateParams', '$filter', 'PropertyService','PlaceService', 'FileUploader', 'Helper', 'Geocode','toastr', '$localStorage', function ($scope, $stateParams, $filter, PropertyService, PlaceService,  FileUploader, Helper, Geocode, toastr, $localStorage) {
         $scope.propertyHasImages = false;
+        $scope.$storage = $localStorage;
         $scope.slides = [];
         $scope.property = PropertyService.get($stateParams.id);
         $scope.uploading = false;
@@ -183,14 +184,13 @@ e2eApp.controller(
                         PropertyService.addMarkerToMap($scope, coords);
                         $scope.property.location.coordinates = [coords.longitude, coords.latitude];
                         //get nearby places
-                        $scope.places = PlaceService.getPlaces(coords);
+                        $scope.places = PlaceService.getPlaces(coords, $scope.property.id);
                         $scope.IsHidden = false;
                         $scope.places.$promise.then(function(){
                             angular.forEach($scope.places.places, function(place){
                                 $scope.nearbyPlaces.push({
-                                    latitude  : place.geometry.location.lat,
-                                    longitude : place.geometry.location.lng,
                                     name : place.name,
+                                    icon : place.icon,
                                 });
                             });
                         });
