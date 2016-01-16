@@ -16,8 +16,8 @@ e2eApp.service('PlaceService', function($q, Place){
             });
             return deferred.promise;
         },
-        getPlaces : function(coords){
-            return Place.getPlaces({longitude: coords.longitude, latitude: coords.latitude}, function (nearbyPlaces) {
+        getPlaces : function(coords, propertyId){
+            return Place.getPlaces({longitude: coords.longitude, latitude: coords.latitude, propertyId : propertyId}, function (nearbyPlaces) {
             });
         }
     };

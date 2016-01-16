@@ -159,20 +159,10 @@
                                 <p editable-textarea="property.description" e-rows="7" e-cols="40">{{ property.description }}</p>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div ng-hide = "IsHidden">
-                                <h3><b>Near By Property</b></h3>
-                                    <p>We found the following places near by your property. <input type="checkbox" name="isNearBy"> Would you like to add in your property locations?</p>
-                                    <ul class="list-group" ng-repeat="nearbyPlace in nearbyPlaces">
-                                        <li class="list-group-item">{{nearbyPlace.name}}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-5">
                 <div class="panel panel-default property-container-map">
                     <div class="panel-heading">
@@ -199,26 +189,39 @@
                                                                 <p><strong>{{options.name}}</strong></p>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </ui-gmap-windows>
-
                                             </ui-gmap-marker>
                                         </ui-gmap-marker>
-
                                     </ui-gmap-markers>
-
                                 </ui-gmap-google-map>
                             </div>
                         </div>
                         <div class="row property-container-seller">
                             <div class="col-md-3">
-                                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" class="avatar-image"/>
+                                <img src="{{ $storage.user.profilePic }}" class="avatar-image"/>
                             </div>
                             <div class="col-md-9">
-                                <p>John Doe</p>
-                                <p><a href="mailto:john@gmail.com"><i class="fa fa-envelope"></i> john@gmail.com</a></p>
+                                <p>{{ $storage.user.firstName }}</p>
+                                <p><a href="mailto:john@gmail.com"><i class="fa fa-envelope"></i>{{$storage.user.email}}</a></p>
                                 <p><a href="tel:+6590294521"><i class="fa fa-phone"></i> +6590294521</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5" ng-hide = "IsHidden">
+                <div class="panel panel-default property-container-map">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-send"></i> Near By Properties </h3>
+                    </div>
+                    <div class="panel-body property-container-map-wrapper">
+                        <div class="row">
+                            <div class="col-md-12 map-wrapper">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="nearbyPlace in nearbyPlaces | limitTo: 5"> <i class="fa fa-{{nearbyPlace.icon}}">&nbsp;</i>{{nearbyPlace.name}}</li>
+                                </ul>
                             </div>
                         </div>
                     </div>

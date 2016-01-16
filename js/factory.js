@@ -29,7 +29,8 @@ e2eApp.factory('Place', function($resource){
                 params:{
                     action: 'nearby',
                     longitude: '@longitude',
-                    latitude: '@latitude'
+                    latitude: '@latitude',
+                    propertyId: '@propertyId'
                 }
             }
         });
