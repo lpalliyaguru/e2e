@@ -169,7 +169,7 @@ e2eApp.controller(
             });
 
             if(!$scope.propertyHasImages) {
-                $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
+                $scope.slides = [ { image : 'http://placehold.it/500x300?text=Upload+Images+Here', text : ''} ];
             }
 
             $scope.removeRandomSlide = function (image) {
@@ -206,14 +206,14 @@ e2eApp.controller(
                         $scope.property.location.coordinates = [coords.longitude, coords.latitude];
                         //get nearby places
                         $scope.places = PlaceService.getPlaces(coords, $scope.property.id);
-                        $scope.IsHidden = false;
                         $scope.places.$promise.then(function(){
                             angular.forEach($scope.places.places, function(place){
-                                $scope.nearbyPlaces.push({
+                                $scope.property.places.push({
                                     name : place.name,
                                     icon : place.icon,
                                 });
                             });
+
                         });
                     }
                     if(status != google.maps.GeocoderStatus.OK || results.length < 1) {
@@ -283,7 +283,7 @@ e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyServi
         });
 
         if(!$scope.propertyHasImages) {
-            $scope.slides = [ { image : 'http://placehold.it/500x300?text=Sample+Image', text : ''} ];
+            $scope.slides = [ { image : 'http://placehold.it/500x300?text=Upload+Images+Here', text : ''} ];
         }
 
         if($scope.property.location.coordinates) {
