@@ -1,10 +1,20 @@
+e2eApp.controller('DashboardController',
+    ['$scope', '$localStorage', 'Helper', 'FileUploader','UserService',
+        function ($scope, $localStorage, Helper, FileUploader, UserService) {
+            $scope.user = $localStorage.user;
+
+
+
+        }]
+);
 e2eApp.controller('ProfileController',
     ['$scope', '$localStorage', 'Helper', 'FileUploader','UserService',
     function ($scope, $localStorage, Helper, FileUploader, UserService) {
         $scope.user = $localStorage.user;
-
+        $scope.updating = false;
 
         $scope.update = function(){
+            $scope.updating = true;
             UserService.save($scope);
         }
         $scope.uploader = new FileUploader({
@@ -39,10 +49,21 @@ e2eApp.controller('NavigationController', function($scope, $rootScope, $localSto
         {
             name: "Profile",
             link: "profile",
+            icon: "fa fa-wrench"
+        },
+        {
+            name: "Dashboard",
+            link: "d",
+            icon: "fa fa-tachometer"
+        },
+        {
+            name: "divider",
+            link: "#"
         },
         {
             name: "Logout",
             link: "logout",
+            icon:"fa fa-sign-out"
         }
     ];
     /*$scope.tree = [{
