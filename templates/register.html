@@ -11,6 +11,15 @@
                             </h1>
                         </div>
                     </div>
+                    <div class="form-group">
+                        I am a
+                        <label class="radio-inline">
+                            <input type="radio" name="type" id="inlineRadio1" ng-model="user.type" value="landlord"> <div class="custom-radio"></div>Landlord
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" id="inlineRadio2" ng-model="user.type" value="tenant">  <div class="custom-radio"></div> Tenant
+                        </label>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
@@ -26,14 +35,12 @@
                     <div class="form-group">
                         <input type="email" ng-model="user.email" class="form-control " placeholder="Email Address" tabindex="4">
                     </div>
-                    <div class="form-group">
-                        I am a
-                        <label class="radio-inline">
-                            <input type="radio" name="type" id="inlineRadio1" ng-model="user.type" value="landlord"> Landlord
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="type" id="inlineRadio2" ng-model="user.type" value="tenant">   Tenant
-                        </label>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <input type="text" ng-model="user.phone" class="form-control" placeholder="Phone" tabindex="1">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
