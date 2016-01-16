@@ -117,6 +117,11 @@ e2eApp.config(function($httpProvider, $stateProvider, $urlRouterProvider, uiGmap
             templateUrl : 'templates/profile.html',
             controller: 'ProfileController'
         })
+        .state('dashboard',{
+            url : '/d',
+            templateUrl : 'templates/dashboard.html',
+            controller: 'DashboardController'
+        })
     ;
 
     $urlRouterProvider.otherwise('/');
