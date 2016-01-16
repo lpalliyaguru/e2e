@@ -161,3 +161,7 @@ tags-input .tags .tag-item { padding: 5px 10px!important;background: none!import
     color: #428bca;
     border-bottom: solid 1px #C4D8EA;
 }
+
+.property-list{}
+.property-list-block{}
+.property-list-block .img-wrapper{ height: 150px;}

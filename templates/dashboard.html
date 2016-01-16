@@ -1,4 +1,31 @@
 <section id="header" class="container-fluid main-header">
-    <div class="well-lg">Dashboard</div>
+    <div class="row">
+        <div class="col-md-2 col-xs-12 col-sm-12">
+            <ul class="list-unstyled">
+                <li><a href="#">Properties</a></li>
+                <li><a href="#">Stats</a></li>
+            </ul>
+
+        </div>
+        <div class="col-md-10 property-list">
+            <div class="row">
+                <div class="col-md-4 property-list-block" ng-repeat="property in user.properties">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="img-wrapper">
+                                <img src="" alt="..." class="img-thumbnail" ng-if="property.asset.images.length == 0 " ng-src="http://placehold.it/500x300?text=Upload+Images+Here">
+                                <img src="" alt="..." class="img-thumbnail" ng-if="property.asset.images.length != 0 " ng-src="{{property.asset.images[0]}}">
+                            </div>
+                            <p>{{ property.name }}</p>
+                            <p class="pull-right">
+                                <a title="View - {{ property.name }}" ui-sref="property({id: property.id})"><i class="fa fa-eye"></i> </a>
+                                <a title="Edit - {{ property.name }}" ui-sref="propertyEdit({id: property.id})"><i class="fa fa-edit"></i> </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>

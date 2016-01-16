@@ -1,7 +1,7 @@
 e2eApp.controller('DashboardController',
     ['$scope', '$localStorage', 'Helper', 'FileUploader','UserService',
         function ($scope, $localStorage, Helper, FileUploader, UserService) {
-            $scope.user = $localStorage.user;
+            $scope.user = UserService.get($localStorage.user.id);
 
 
 
@@ -53,7 +53,7 @@ e2eApp.controller('NavigationController', function($scope, $rootScope, $localSto
         },
         {
             name: "Dashboard",
-            link: "d",
+            link: "dashboard",
             icon: "fa fa-tachometer"
         },
         {
@@ -344,9 +344,9 @@ e2eApp.controller("HomeController",
             $scope.user.$promise.then(function () {
                 $scope.checkingPropertyExist = false;
                 //here need to check how many incomplete postings does user pocesses.
-                if($scope.user.properties.length == 0) {
+                //if($scope.user.properties.length == 0) {
                     $scope.createPosting();
-                }
+               // }
             });
         }
         else {
