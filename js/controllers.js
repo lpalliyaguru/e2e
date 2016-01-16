@@ -2,9 +2,10 @@ e2eApp.controller('ProfileController',
     ['$scope', '$localStorage', 'Helper', 'FileUploader','UserService',
     function ($scope, $localStorage, Helper, FileUploader, UserService) {
         $scope.user = $localStorage.user;
-
+        $scope.updating = false;
 
         $scope.update = function(){
+            $scope.updating = true;
             UserService.save($scope);
         }
         $scope.uploader = new FileUploader({

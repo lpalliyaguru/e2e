@@ -40,10 +40,8 @@ e2eApp.config(function($httpProvider, $stateProvider, $urlRouterProvider, uiGmap
     $httpProvider.interceptors.push(function ($q, toastr) {
         return {
             'responseError': function (responseError) {
-                console.log($stateProvider);
                 toastr.error(responseError.statusText)
                 if(responseError.status == 403 || responseError.status == 401) {
-                    //$stateProvider.state().go('login');
                     location.hash = '#/login';
                 }
 
@@ -62,12 +60,12 @@ e2eApp.config(function($httpProvider, $stateProvider, $urlRouterProvider, uiGmap
     });
 
     angular.extend(toastrConfig, {
-        autoDismiss: false,
+        autoDismiss: true,
         containerId: 'toast-container',
         maxOpened: 0,
         newestOnTop: true,
         closeButton: true,
-        positionClass: 'toast-top-right',
+        positionClass: 'toast-bottom-right',
         preventDuplicates: false,
         preventOpenDuplicates: false,
         target: 'body'
