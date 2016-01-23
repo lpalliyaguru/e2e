@@ -22,9 +22,9 @@
             </form>
         </div>
     </div>
+    <br>
     <div class="containedr" id="search-results">
         <div class="col-md-4 col-xs-12 col-sm-12 search-list">
-
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="btn-group" role="group" aria-label="...">
@@ -36,13 +36,13 @@
                 <li class="list-group-item" ng-class="{'active' : selectedMarker.hashId == prop.id}"  ng-repeat="prop in props.properties">
                     <div class="row">
                         <div class="col-md-3 property-img">
-                            <img src="/images/properties/1.jpg"  class="img-responsive">
+                            <a ui-sref="property({id: prop.id})"><img src="/images/properties/1.jpg"  class="img-responsive"></a>
                         </div>
                         <div class="col-md-9 property-desc">
-                            <a ui-sref="property({id: prop.id})">{{ prop.name }}</a>
-                            <p>S$4,100/month </p>
-                            <span class="label label-default"><i class="fa fa-bed"></i> 1 bed</span>
-                            <span class="label label-default"><i class="fa fa-child"></i> 1 bath</span>
+                            <p class="left"><a ui-sref="property({id: prop.id})">{{ prop.name }}</a></p>
+                            <p class="left">S$4,100/month </p>
+                            <span class="label label-default left"><i class="fa fa-bed"></i> 1 bed</span>
+                            <span class="label label-default left"><i class="fa fa-child"></i> 1 bath</span>
                         </div>
                     </div>
                 </li>

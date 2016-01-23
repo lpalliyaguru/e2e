@@ -263,12 +263,13 @@ e2eApp.controller(
 
     }]);
 
-e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyService', function($scope, $stateParams, PropertyService){
+e2eApp.controller('PropertyController',['$scope', '$stateParams', 'PropertyService','$localStorage' , function($scope, $stateParams, PropertyService, $localStorage){
 
     var id = $stateParams.id;
-    $scope.myInterval = -1;
+    $scope.$storage     = $localStorage;
+    $scope.myInterval   = -1;
     $scope.noWrapSlides = false;
-    $scope.markers = [], $scope.slides = [];
+    $scope.markers      = [], $scope.slides = [];
     $scope.map = {
         center: { latitude: 1.434832, longitude: 103.796258 },
         zoom: 15,
@@ -370,7 +371,12 @@ e2eApp.controller(
     ['$scope', '$q', '$stateParams', '$state', 'HelperService','PropertyService','PlaceService', 'Property',
     function ($scope,$q, $stateParams, $state, HelperService, PropertyService, PlaceService, Property) {
 
-        var places = $stateParams.places.split(','), placeids = [];
+        var places   = [];
+        var placeids = [];
+
+        if(typeof $stateParams.places != 'undefined') {
+             places = $stateParams.places.split(','),    placeids = [];
+        }
         $scope.sale = $stateParams.sale === 'true';
         $scope.rent = $stateParams.rent === 'true';
         $scope.places = HelperService.rebuildPlacesArray(places);

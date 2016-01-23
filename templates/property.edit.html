@@ -54,7 +54,7 @@
                                             </a>
                                         </li>
 
-                                        <li class="img-upload-wrapper">
+                                        <li class="img-upload-wrapper" onclick="document.getElementById('image-uploader').click()">
                                             <input
                                                     type="file"
                                                     id="image-uploader"
@@ -62,8 +62,7 @@
                                                     class="hidden"
                                                     nv-file-select
                                                     uploader="uploader">
-
-                                            <a ng-hide="uploading" onclick="document.getElementById('image-uploader').click()"><i class="fa fa-upload"></i> </a>
+                                            <a ng-hide="uploading"><i class="fa fa-upload"></i> </a>
                                             <i class="fa fa-spinner fa-spin" ng-show="uploading"></i>
                                         </li>
                                     </ul>
@@ -203,15 +202,15 @@
                             </div>
                             <div class="col-md-9">
                                 <p>{{ $storage.user.firstName }}</p>
-                                <p><a href="mailto:john@gmail.com"><i class="fa fa-envelope"></i>{{$storage.user.email}}</a></p>
-                                <p><a href="tel:+6590294521"><i class="fa fa-phone"></i> +6590294521</a></p>
+                                <p><a href="mailto:{{$storage.user.email}}"><i class="fa fa-envelope"></i>{{$storage.user.email}}</a></p>
+                                <p><a href="tel:{{$storage.user.phone}}"><i class="fa fa-phone"></i> {{$storage.user.phone}}</a></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5" ng-show="property.places.length">
                 <div class="panel panel-default property-container-map">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-send"></i> Places near by

@@ -126,13 +126,31 @@
                             </div>
                         </div>
                         <div class="row property-container-seller">
-                            <div class="col-md-3">
-                                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg" class="avatar-image"/>
+                            <div class="col-md-3"  ng-show="$storage.user.profilePic">
+                                <img src="{{ $storage.user.profilePic }}" class="avatar-image"/>
                             </div>
-                            <div class="col-md-9">
-                                <p>John Doe</p>
-                                <p><a href="mailto:john@gmail.com"><i class="fa fa-envelope"></i> john@gmail.com</a></p>
-                                <p><a href="tel:+6590294521"><i class="fa fa-phone"></i> +6590294521</a></p>
+                            <div class="col-md-9" ng-show="$storage.user.firstName">
+                                <p>{{ $storage.user.firstName }}</p>
+                                <p><a href="mailto:{{$storage.user.email}}"><i class="fa fa-envelope"></i>{{$storage.user.email}}</a></p>
+                                <p><a href="tel:{{$storage.user.phone}}"><i class="fa fa-phone"></i> {{$storage.user.phone}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5" ng-show="property.places.length">
+                <div class="panel panel-default property-container-map">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-send"></i> Places near by
+                            <a popover-placement="left" uib-popover="Please find list of places which is near for this property" popover-title="Near by?" type="button" href="" class="pull-right"><i class="fa fa-question"></i></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body property-container-map-wrapper">
+                        <div class="row">
+                            <div class="col-md-12 map-wrapper">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="place in property.places | limitTo: 5"> <i class="{{place.icon}}">&nbsp;</i>{{place.name}}</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
